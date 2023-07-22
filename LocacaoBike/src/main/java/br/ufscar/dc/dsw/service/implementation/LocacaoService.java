@@ -17,26 +17,31 @@ public class LocacaoService implements ILocacaoService {
 	@Autowired
 	ILocacaoDAO dao;
 	
+	@Transactional(readOnly = true)
+	public Locacao buscarPorId(Long id) {
+		return dao.findById(id.longValue());
+	}
+
+    @Transactional(readOnly = true)
+	public List<Locacao> buscarPorCPF(Long CPF) {
+		return dao.findByCPF(CPF);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Locacao> buscarPorCNPJ(Long CNPJ) {
+		return dao.findByCNPJ(CNPJ);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Locacao> buscarTodos() {
+		return dao.findAll();
+	}
+
 	public void salvar(Locacao locacao) {
 		dao.save(locacao);
 	}
 
 	public void excluir(Long id) {
 		dao.deleteById(id);
-	}
-
-	@Transactional(readOnly = true)
-	public Cliente buscarPorId(Long id) {
-		return dao.findById(id.longValue());
-	}
-
-    @Transactional(readOnly = true)
-	public Cliente buscarPorCPF(Long CPF) {
-		return dao.findByCPF(CPF);
-	}
-
-	@Transactional(readOnly = true)
-	public List<Cliente> buscarTodos() {
-		return dao.findAll();
 	}
 }

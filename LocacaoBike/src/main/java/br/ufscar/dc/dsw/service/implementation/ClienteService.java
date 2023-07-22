@@ -17,14 +17,6 @@ public class ClienteService implements IClienteService {
 	@Autowired
 	IClienteDAO dao;
 	
-	public void salvar(Cliente cliente) {
-		dao.save(cliente);
-	}
-
-	public void excluir(Long id) {
-		dao.deleteById(id);
-	}
-
 	@Transactional(readOnly = true)
 	public Cliente buscarPorId(Long id) {
 		return dao.findById(id.longValue());
@@ -39,4 +31,18 @@ public class ClienteService implements IClienteService {
 	public List<Cliente> buscarTodos() {
 		return dao.findAll();
 	}
+
+	public void salvar(Cliente cliente) {
+		dao.save(cliente);
+	}
+
+	public void excluirPorId(Long id) {
+		dao.deleteById(id);
+	}
+
+	public void excluirPorCPF(String CPF) {
+		dao.deleteByCPF(CPF);
+	}
+
+
 }

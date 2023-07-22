@@ -8,9 +8,13 @@ public interface ILocadoraService {
 
 	Locadora buscarPorId(Long id);
 
+	Locadora buscarPorCNPJ(String CNPJ);
+
 	List<Locadora> buscarTodos();
 
 	void salvar(Locadora editora);
 
-	void excluir(Long id);
+	void excluirPorId(Long id);
+
+	void excluirPorCNPJ(String CNPJ);
 }

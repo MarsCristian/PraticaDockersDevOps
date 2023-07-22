@@ -16,14 +16,6 @@ public class LocadoraService implements ILocadoraService {
 
 	@Autowired
 	ILocadoraDAO dao;
-	
-	public void salvar(Locadora locadora) {
-		dao.save(locadora);
-	}
-
-	public void excluir(Long id) {
-		dao.deleteById(id);
-	}
 
 	@Transactional(readOnly = true)
 	public Locadora buscarPorId(Long id) {
@@ -38,5 +30,17 @@ public class LocadoraService implements ILocadoraService {
 	@Transactional(readOnly = true)
 	public List<Locadora> buscarTodos() {
 		return dao.findAll();
+	}
+
+	public void salvar(Locadora locadora) {
+		dao.save(locadora);
+	}
+
+	public void excluirPorId(Long id) {
+		dao.deleteById(id);
+	}
+
+	public void excluirPorCNPJ(String CNPJ) {
+		dao.deleteByCNPJ(CNPJ);
 	}
 }

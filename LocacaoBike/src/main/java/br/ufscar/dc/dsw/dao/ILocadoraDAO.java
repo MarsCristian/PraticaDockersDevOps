@@ -18,4 +18,6 @@ public interface ILocadoraDAO extends CrudRepository<Locadora, Long>{
 	Locadora save(Locadora locadora);
 
 	void deleteById(Long id);
+
+	void deleteByCNPJ(String CNPJ);
 }
