@@ -22,15 +22,15 @@ public class LocacaoService implements ILocacaoService {
 		return dao.findById(id.longValue());
 	}
 
-    @Transactional(readOnly = true)
-	public List<Locacao> buscarPorCPF(String CPF) {
-		return dao.findByCPF(CPF);
-	}
+    // @Transactional(readOnly = true)
+	// public List<Locacao> buscarPorCPF(String CPF) {
+	// 	return dao.findByCPF(CPF);
+	// }
 	
-	@Transactional(readOnly = true)
-	public List<Locacao> buscarPorCNPJ(String CNPJ) {
-		return dao.findByCNPJ(CNPJ);
-	}
+	// @Transactional(readOnly = true)
+	// public List<Locacao> buscarPorCNPJ(String CNPJ) {
+	// 	return dao.findByCNPJ(CNPJ);
+	// }
 
 	@Transactional(readOnly = true)
 	public List<Locacao> buscarTodos() {

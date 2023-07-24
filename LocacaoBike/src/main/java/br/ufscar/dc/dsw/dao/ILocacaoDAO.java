@@ -11,9 +11,9 @@ public interface ILocacaoDAO extends CrudRepository<Locacao, Long>{
 
 	Locacao findById(long id);
 	
-	List<Locacao> findByCPF(String CPF);
+	// List<Locacao> findByCPF(String CPF);
 
-	List<Locacao> findByCNPJ(String CNPJ);
+	// List<Locacao> findByCNPJ(String CNPJ);
 
 	List<Locacao> findAll();
 	

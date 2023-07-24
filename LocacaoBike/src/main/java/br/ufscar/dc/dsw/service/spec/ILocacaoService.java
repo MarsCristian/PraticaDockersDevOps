@@ -8,9 +8,9 @@ public interface ILocacaoService {
 
 	Locacao buscarPorId(Long id);
 
-    List<Locacao> buscarPorCPF(String CPF);
+    // List<Locacao> buscarPorCPF(String CPF);
 
-	List<Locacao> buscarPorCNPJ(String CNPJ);
+	// List<Locacao> buscarPorCNPJ(String CNPJ);
 
 	List<Locacao> buscarTodos();
 

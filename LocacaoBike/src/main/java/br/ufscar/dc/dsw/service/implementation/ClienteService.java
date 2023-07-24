@@ -1,4 +1,4 @@
-package br.ufscar.dc.dsw.service.impl;
+package br.ufscar.dc.dsw.service.implementation;
 
 import java.util.List;
 
