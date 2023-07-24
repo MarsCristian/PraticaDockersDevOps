@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
+import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 
 @Controller
 @RequestMapping("/locadoras")
@@ -25,8 +27,13 @@ public class LocadoraController {
 	@Autowired
 	private ILocadoraService locadoraService;
 
+	@Autowired
+	private ILocacaoService locacaoService;
+
 	@GetMapping("/cadastrar")
-	public String cadastrar(Locadora locadora) {
+	public String cadastrar(Locadora locadora, ModelMap model) {
+		System.out.println("Cadastrando nova Locadora");
+		model.addAttribute("Locadora", locadora);
 		return "locadora/cadastro";
 	}
 
@@ -68,13 +75,13 @@ public class LocadoraController {
 
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-		livroService.excluir(id);
+		locadoraService.excluirPorId(id);
 		attr.addFlashAttribute("sucess", "Locadora excluída com sucesso.");
 		return "redirect:/locadoras/listar";
 	}
 
 	@ModelAttribute("locacoes")
 	public List<Locacao> listaLocacoes() {
-		return editoraService.buscarTodos();
+		return locacaoService.buscarTodos();
 	}
 }
