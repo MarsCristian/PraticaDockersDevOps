@@ -16,5 +16,5 @@ public interface ILocacaoService {
 
 	void salvar(Locacao editora);
 
-	void excluirPorId(Long id);
+	void excluir(Long id);
 }

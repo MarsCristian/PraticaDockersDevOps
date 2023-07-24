@@ -32,7 +32,7 @@ public class Cliente extends Usuario {
     @Column(nullable = false, unique = false, length = 256)
     private String dataNascimento;
 
-	@ManyToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente")
 	private List<Locacao> locacoes;
 	
 	public String getCPF() {
@@ -49,14 +49,6 @@ public class Cliente extends Usuario {
 
     public void setSexo(String sexo) {
 		this.sexo = sexo;
-	}
-
-    public String getTelefone() {
-		return telefone;
-	}
-
-    public void setTelefone(String telefone) {
-		this.telefone = telefone;
 	}
 
 	public List<Locacao> getLocacoes() {

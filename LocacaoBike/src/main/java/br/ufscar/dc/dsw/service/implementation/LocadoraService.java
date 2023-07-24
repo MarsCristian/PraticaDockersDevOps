@@ -23,7 +23,7 @@ public class LocadoraService implements ILocadoraService {
 	}
 
     @Transactional(readOnly = true)
-	public Locadora buscarPorCNPJ(Long CNPJ) {
+	public Locadora buscarPorCNPJ(String CNPJ) {
 		return dao.findByCNPJ(CNPJ);
 	}
 

@@ -7,10 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import br.ufscar.dc.dsw.dao.IEditoraDAO;
-import br.ufscar.dc.dsw.dao.ILivroDAO;
-import br.ufscar.dc.dsw.domain.Editora;
-import br.ufscar.dc.dsw.domain.Livro;
+import br.ufscar.dc.dsw.dao.ILocadoraDAO;
+import br.ufscar.dc.dsw.dao.IClienteDAO;
+import br.ufscar.dc.dsw.dao.ILocacaoDAO;
+
+import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Locacao;
 
 @SpringBootApplication
 public class LocadoraMvcApplication {

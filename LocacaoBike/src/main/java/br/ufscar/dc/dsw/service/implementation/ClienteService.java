@@ -23,7 +23,7 @@ public class ClienteService implements IClienteService {
 	}
 
     @Transactional(readOnly = true)
-	public Cliente buscarPorCPF(Long CPF) {
+	public Cliente buscarPorCPF(String CPF) {
 		return dao.findByCPF(CPF);
 	}
 

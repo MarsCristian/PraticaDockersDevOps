@@ -27,7 +27,7 @@ public class Locadora extends Usuario {
     @Column(nullable = false, unique = false, length = 256)
     private String cidade;
 
-	@ManyToMany(mappedBy = "locadora")
+	@OneToMany(mappedBy = "locadora")
 	private List<Locacao> locacoes;
 	
 	public String getCNPJ() {
@@ -44,13 +44,6 @@ public class Locadora extends Usuario {
 
     public void setCidade(String cidade) {
 		this.cidade = cidade;
-	}
-    public String getTelefone() {
-		return telefone;
-	}
-
-    public void setTelefone(String telefone) {
-		this.telefone = telefone;
 	}
 
 	public List<Locacao> getLocacoes() {

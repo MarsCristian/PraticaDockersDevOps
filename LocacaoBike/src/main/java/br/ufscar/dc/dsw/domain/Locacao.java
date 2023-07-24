@@ -4,13 +4,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-import br.ufscar.dc.dsw.validation.UniquedCPF;
-import br.ufscar.dc.dsw.validation.UniquedCNPJ;
 
 @SuppressWarnings("serial")
 @Entity
@@ -28,13 +27,13 @@ public class Locacao extends AbstractEntity<Long> {
     private String horaLocacao;
 
     @NotBlank(message = "{NotNull.locacao.locadora}")
-	@ManyToMany
-    @JoinColumn(name = "locadora_id")
-	private Locadora locadora;
+	@ManyToOne
+	@JoinColumn(name = "locadora_id")
+	private Locadora locadora;	
 
     @NotBlank()
-	@ManyToMany
-    @JoinColumn(name = "cliente_id")
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
     public String getDataLocacao() {
@@ -53,19 +52,19 @@ public class Locacao extends AbstractEntity<Long> {
 		this.horaLocacao = horaLocacao;
 	}
 
-	public List<Locadora> getLocadoras() {
-		return locadoras;
+	public Locadora getLocadora() {
+		return locadora;
 	}
 
-	public void setLocadoras(List<Locadora> locadoras) {
-		this.locadoras = locadoras;
+	public void setLocadora(Locadora locadora) {
+		this.locadora = locadora;
 	}
 
-    public List<Cliente> getClientes() {
+    public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setClientes(List<Cliente> cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 }

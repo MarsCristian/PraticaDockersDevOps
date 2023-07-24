@@ -6,20 +6,20 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.ufscar.dc.dsw.dao.IClienteDAO;
-import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.dao.ILocadoraDAO;
+import br.ufscar.dc.dsw.domain.Locadora;
 
 @Component
-public class UniqueCPFValidator implements ConstraintValidator<UniqueCPF, String> {
+public class UniquedCNPJValidator implements ConstraintValidator<UniquedCNPJ, String> {
 
 	@Autowired
-	private IClienteDAO clienteDao;
+	private ILocadoraDAO LocadoraDao;
 
 	@Override
-	public boolean isValid(String CPF, ConstraintValidatorContext context) {
-		if (clienteDao != null) {
-			Cliente cliente = clienteDao.findByCNPJ(CNPJ);
-			return cliente == null;
+	public boolean isValid(String CNPJ, ConstraintValidatorContext context) {
+		if (LocadoraDao != null) {
+			Locadora locadora = LocadoraDao.findByCNPJ(CNPJ);
+			return locadora == null;
 		} else {
 			// Durante a execução da classe LocadoraMvcApplication
 			// não há injeção de dependência
