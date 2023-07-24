@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import br.ufscar.dc.dsw.validation.UniquedCNPJ;
+import br.ufscar.dc.dsw.validation.UniquedTelefone;
 
 @SuppressWarnings("serial")
 @Entity
@@ -22,13 +23,14 @@ public class Locadora extends Usuario {
 	@Column(nullable = false, unique = true, length = 18)
 	private String CNPJ;
 
+	@UniquedTelefone (message = "{Unique.editora.telefone}")
     @NotBlank(message = "{NotNull.locadora.cidade}")
     @Size(min = 3, max = 256)
     @Column(nullable = false, unique = false, length = 256)
     private String cidade;
 
-	@OneToMany(mappedBy = "locadora")
-	private List<Locacao> locacoes;
+	//@OneToMany(mappedBy = "locadora")
+	//private List<Locacao> locacoes;
 	
 	public String getCNPJ() {
 		return CNPJ;
@@ -46,11 +48,11 @@ public class Locadora extends Usuario {
 		this.cidade = cidade;
 	}
 
-	public List<Locacao> getLocacoes() {
-		return locacoes;
-	}
-
-	public void setLocacoes(List<Locacao> locacoes) {
-		this.locacoes = locacoes;
-	}
+	//public List<Locacao> getLocacoes() {
+	//	return locacoes;
+	//}
+//
+	//public void setLocacoes(List<Locacao> locacoes) {
+	//	this.locacoes = locacoes;
+	//}
 }

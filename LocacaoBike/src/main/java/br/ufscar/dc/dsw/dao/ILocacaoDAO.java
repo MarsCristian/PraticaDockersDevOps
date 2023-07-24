@@ -10,10 +10,6 @@ import br.ufscar.dc.dsw.domain.Locacao;
 public interface ILocacaoDAO extends CrudRepository<Locacao, Long>{
 
 	Locacao findById(long id);
-	
-	// List<Locacao> findByCPF(String CPF);
-
-	// List<Locacao> findByCNPJ(String CNPJ);
 
 	List<Locacao> findAll();
 	

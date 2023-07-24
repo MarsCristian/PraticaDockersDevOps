@@ -8,9 +8,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import javax.persistence.MappedSuperclass;
 
 @SuppressWarnings("serial")
-@Entity
+@MappedSuperclass
 @Table(name = "Usuario")
 public class Usuario extends AbstractEntity<Long> {
 
