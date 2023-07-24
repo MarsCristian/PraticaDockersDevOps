@@ -28,6 +28,11 @@ public class LocadoraService implements ILocadoraService {
 	}
 
 	@Transactional(readOnly = true)
+	public Locadora buscarPorTelefone(String telefone) {
+		return dao.findByTelefone(telefone);
+	}
+
+	@Transactional(readOnly = true)
 	public List<Locadora> buscarTodos() {
 		return dao.findAll();
 	}

@@ -19,7 +19,7 @@ public class Cliente extends Usuario {
 	@UniquedCPF (message = "{Unique.cliente.CPF}")
 	@NotBlank
 	@Size(min = 14, max = 14, message = "{Size.cliente.CPF}")
-	@Column(nullable = false, unique = true, length = 14)
+	@Column(nullable = true, unique = true, length = 14)
 	private String CPF;
 
     @NotBlank(message = "{NotNull.cliente.sexo}")
