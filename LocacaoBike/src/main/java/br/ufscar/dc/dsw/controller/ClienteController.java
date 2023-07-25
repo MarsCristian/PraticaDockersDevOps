@@ -30,6 +30,9 @@ public class ClienteController {
 	@Autowired
 	private IClienteService clienteService;
 
+	@Autowired
+	private ILocacaoService locacaoService;
+
 	@GetMapping("/cadastrar")
 	public String cadastrar(Cliente cliente) {
 		return "cliente/cadastro";
