@@ -31,7 +31,7 @@ public class LocacaoService implements ILocacaoService {
 		dao.save(locacao);
 	}
 
-	public void excluir(Long id) {
+	public void excluirPorId(Long id) {
 		dao.deleteById(id);
 	}
 }
