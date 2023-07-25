@@ -51,6 +51,9 @@ public class LocadoraController {
 
 		System.out.println("Salvar locadora");
 
+
+		System.out.println(result.getAllErrors());
+
 		if (result.hasErrors()) {
 			System.out.println("Entrou no if");
 			return "locadora/cadastro";
