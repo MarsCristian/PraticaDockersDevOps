@@ -23,8 +23,8 @@
 
 			<div th:replace="fragments/alert"></div>
 			<form
-				th:action="${Locadora.id == null} ? @{/locadoras/salvar} : @{/locadoras/editar}"
-				th:object="${Locadora}" method="POST">
+				th:action="${locadora.id == null} ? @{/locadoras/salvar} : @{/locadoras/editar}"
+				th:object="${locadora}" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="Nome">Nome</label> 
@@ -51,7 +51,8 @@
 						<label for="telefone">Telefone</label> 
 						<input type="text" class="form-control" id="telefone" placeholder="(xx) XXXXX-XXXX"
 							autofocus="autofocus" th:field="*{telefone}"
-							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid" />
+							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid"
+							data-mask="(00) 00000-0000" data-mask-reverse="true" />
 
 						<div class="invalid-feedback">
 							<span th:errors="*{telefone}"></span>
@@ -72,6 +73,7 @@
 					<div class="form-group col-md-6">
 						<label for="CNPJ">CNPJ</label> 
 						<input type="text" class="form-control" id="CNPJ" placeholder="__.___.___/____-__"
+							th:readonly="${locadora.id != null}"
 							autofocus="autofocus" th:field="*{CNPJ}"
 							th:classappend="${#fields.hasErrors('CNPJ')} ? is-invalid" 
 							data-mask="00.000.000/0000-00" data-mask-reverse="true" />
@@ -83,12 +85,12 @@
 
 					<div class="form-group col-md-6">
 						<label for="papel">Papel</label> 
-						<input type="text" class="form-control" id="papel" placeholder="__.___.___/____-__"
-							autofocus="autofocus" th:field="*{CNPJ}"
-							th:classappend="${#fields.hasErrors('CNPJ')} ? is-invalid" 
-							data-mask="00.000.000/0000-00" data-mask-reverse="true" />            
+						<input type="text" class="form-control" id="papel" placeholder="Locadora"
+							autofocus="autofocus" th:field="*{papel}"
+							th:classappend="${#fields.hasErrors('papel')} ? is-invalid" />
+
 						<div class="invalid-feedback">
-							<span th:errors="*{CNPJ}"></span>
+							<span th:errors="*{papel}"></span>
 						</div>
 					</div>
 				</div>

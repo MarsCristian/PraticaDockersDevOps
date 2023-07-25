@@ -49,10 +49,14 @@ public class LocadoraController {
 	@PostMapping("/salvar")
 	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
 
+		System.out.println("Salvar locadora");
+
 		if (result.hasErrors()) {
+			System.out.println("Entrou no if");
 			return "locadora/cadastro";
 		}
 
+		System.out.println("Passou do if");
 		locadoraService.salvar(locadora);
 		attr.addFlashAttribute("sucess", "Locadora inserida com sucesso");
 		return "redirect:/locadoras/listar";
