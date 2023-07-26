@@ -64,6 +64,12 @@ public class LocadoraMvcApplication {
             clienteDAO.save(c1);
             System.out.println("Inseriu c1");
 
+            Locacao lo1 = new Locacao();
+            lo1.setCliente(c1);
+            lo1.setLocadora(l1);
+            lo1.setDataLocacao("08/09/2020");
+            lo1.setHoraLocacao("10:00");
+            locacaoDAO.save(lo1);
 
             List<Locadora> locadora = locadoraDAO.findAll();
             System.out.println("Printando todas as locadoras adicionadas");
