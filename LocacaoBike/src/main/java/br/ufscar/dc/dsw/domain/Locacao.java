@@ -26,10 +26,10 @@ public class Locacao extends AbstractEntity<Long> {
     @Column(nullable = false, unique = false, length = 256)
     private String horaLocacao;
 
-    //@NotBlank(message = "{NotNull.locacao.locadora}")
-	//@ManyToOne
-	//@JoinColumn(name = "locadora_id")
-	//private Locadora locadora;	
+    @NotBlank(message = "{NotNull.locacao.locadora}")
+	@ManyToOne
+	@JoinColumn(name = "locadora_id")
+	private Locadora locadora;	
 
     @NotBlank()
 	@ManyToOne
@@ -52,13 +52,13 @@ public class Locacao extends AbstractEntity<Long> {
 		this.horaLocacao = horaLocacao;
 	}
 
-	//public Locadora getLocadora() {
-	//	return locadora;
-	//}
-//
-	//public void setLocadora(Locadora locadora) {
-	//	this.locadora = locadora;
-	//}
+	public Locadora getLocadora() {
+		return locadora;
+	}
+
+	public void setLocadora(Locadora locadora) {
+		this.locadora = locadora;
+	}
 
     public Cliente getCliente() {
 		return cliente;

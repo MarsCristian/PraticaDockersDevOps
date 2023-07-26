@@ -22,9 +22,11 @@
 		<div class="container" id="cadastro">
 
 			<div th:replace="fragments/alert"></div>
+
 			<form
 				th:action="${locadora.id == null} ? @{/locadoras/salvar} : @{/locadoras/editar}"
 				th:object="${locadora}" method="POST">
+				
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="Nome">Nome</label> 

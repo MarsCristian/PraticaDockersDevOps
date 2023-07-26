@@ -53,4 +53,9 @@ public class LocadoraService implements ILocadoraService {
 	public void excluirPorCNPJ(String CNPJ) {
 		dao.deleteByCNPJ(CNPJ);
 	}
+
+	//@Transactional(readOnly = true)
+	//public boolean locadoraTemLocacao(Long id) {
+	//	return !dao.findById(id.longValue()).getLocacoes().isEmpty(); 
+	//}
 }

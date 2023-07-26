@@ -21,4 +21,6 @@ public interface ILocadoraService {
 	void excluirPorId(Long id);
 
 	void excluirPorCNPJ(String CNPJ);
+
+	//boolean locadoraTemLocacao(Long id);
 }

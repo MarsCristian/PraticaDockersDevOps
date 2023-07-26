@@ -34,9 +34,9 @@ public class LocadoraController {
 	private ILocacaoService locacaoService;
 
 	@GetMapping("/cadastrar")
-	public String cadastrar(Locadora locadora, ModelMap model) {
+	public String cadastrar(Locadora locadora) {
 		System.out.println("Cadastrando nova Locadora");
-		model.addAttribute("Locadora", locadora);
+		//model.addAttribute("Locadora", locadora);
 		return "locadora/cadastro";
 	}
 
@@ -50,9 +50,6 @@ public class LocadoraController {
 	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
 
 		System.out.println("Salvar locadora");
-
-
-		System.out.println(result.getAllErrors());
 
 		if (result.hasErrors()) {
 			System.out.println("Entrou no if");
@@ -93,10 +90,11 @@ public class LocadoraController {
 			errors += 1;
 		if (result.getFieldError("telefone") != null)
 			errors += 1;
+
 		System.out.println(errors);
 		System.out.println(result.getFieldErrorCount()); 
 
-		if (result.getFieldErrorCount() > errors || (result.getFieldError("CNPJ") == null || result.getFieldError("telefone") == null || result.getFieldError("email") == null)) {
+		if (result.getFieldErrorCount() > errors) {
 			return "locadora/cadastro";
 		}
 
