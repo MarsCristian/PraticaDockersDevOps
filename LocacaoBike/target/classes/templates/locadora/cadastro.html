@@ -51,11 +51,11 @@
 
 					<div class="form-group col-md-6">
 
-						<label for="telefone">Telefone</label> 
+						<label for="telefone" th:text="#{telefone.label}"></label>  
 						<input type="text" class="form-control" id="telefone" placeholder="(__)_____-____"
 							autofocus="autofocus" th:field="*{telefone}"
 							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid"
-							data-mask="(00)00000-0000" data-mask-reverse="true" />
+							data-mask="(00)00000-0000"/>
 
 
 						<div class="invalid-feedback">
@@ -64,6 +64,7 @@
 					</div>
 
 					<div class="form-group col-md-6">
+
 						<label for="email" th:text="#{email.label}"></label> 
 						<input type="text" class="form-control" id="email" placeholder="example@example.com"
 							autofocus="autofocus" th:field="*{email}"
@@ -75,12 +76,12 @@
 					</div>
 					
 					<div class="form-group col-md-6">
-						<label for="CNPJ" th:text="#{email.label}"></label> 
+						<label for="CNPJ" th:text="#{CNPJ.label}"></label> 
 						<input type="text" class="form-control" id="CNPJ" placeholder="__.___.___/____-__"
 							th:readonly="${locadora.id != null}"
 							autofocus="autofocus" th:field="*{CNPJ}"
 							th:classappend="${#fields.hasErrors('CNPJ')} ? is-invalid" 
-							data-mask="00.000.000/0000-00" data-mask-reverse="true" />
+							data-mask="00.000.000/0000-00"/>
 						                               
 						<div class="invalid-feedback">
 							<span th:errors="*{CNPJ}"></span>
@@ -89,7 +90,7 @@
 
 					<div class="form-group col-md-6">
 
-						<label for="papel">Papel</label> 
+						<label for="papel" th:text="#{papel.label}"></label> 
 						<input type="text" class="form-control" id="papel" value="Locadora"
 							th:readonly="${locadora.papel != null}"
 							autofocus="autofocus" th:field="*{papel}"
