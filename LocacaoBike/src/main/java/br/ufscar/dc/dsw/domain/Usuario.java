@@ -10,6 +10,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.persistence.MappedSuperclass;
 
+import br.ufscar.dc.dsw.validation.UniquedTelefone;
+import br.ufscar.dc.dsw.validation.UniquedEmail;
+
 @SuppressWarnings("serial")
 @MappedSuperclass
 @Table(name = "Usuario")
@@ -20,11 +23,13 @@ public class Usuario extends AbstractEntity<Long> {
   @Column(nullable = false, unique = false, length = 256)
   private String nome;
       
+  @UniquedTelefone (message = "{Unique.usuario.telefone}")
   @NotBlank(message = "{NotNull.usuario.telefone}")
   @Size(min = 3, max = 256)
   @Column(nullable = false, unique = true, length = 256)
   private String telefone;
 
+  @UniquedEmail (message = "{Unique.usuario.email}")
   @NotBlank(message = "{NotNull.usuario.email}")
   @Size(min = 3, max = 256)
   @Column(nullable = false, unique = false, length = 256)

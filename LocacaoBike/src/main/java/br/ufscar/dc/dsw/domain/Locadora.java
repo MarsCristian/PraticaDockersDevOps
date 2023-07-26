@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import br.ufscar.dc.dsw.validation.UniquedCNPJ;
-import br.ufscar.dc.dsw.validation.UniquedTelefone;
 
 @SuppressWarnings("serial")
 @Entity
@@ -22,8 +21,7 @@ public class Locadora extends Usuario {
 	@Size(min = 18, max = 18, message = "{Size.editora.CNPJ}")
 	@Column(nullable = false, unique = true, length = 18)
 	private String CNPJ;
-
-	@UniquedTelefone (message = "{Unique.editora.telefone}")
+	
     @NotBlank(message = "{NotNull.locadora.cidade}")
     @Size(min = 3, max = 256)
     @Column(nullable = false, unique = false, length = 256)

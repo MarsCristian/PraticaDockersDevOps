@@ -12,6 +12,8 @@ public interface ILocadoraService {
 
 	Locadora buscarPorTelefone(String telefone);
 
+	Locadora buscarPorEmail(String email);
+
 	List<Locadora> buscarTodos();
 
 	void salvar(Locadora editora);
