@@ -1,0 +1,3 @@
+*.class
+LocacaoBike/**/*.class
+/LocacaoBike/**/*.class
