@@ -85,8 +85,18 @@ public class LocadoraController {
 
 	@PostMapping("/editar")
 	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
+		System.out.println("Entrou no /editar");
+		Integer errors = 0;
+		if (result.getFieldError("CNPJ") != null)
+			errors += 1;
+		if (result.getFieldError("email") != null)
+			errors += 1;
+		if (result.getFieldError("telefone") != null)
+			errors += 1;
+		System.out.println(errors);
+		System.out.println(result.getFieldErrorCount()); 
 
-		if (result.hasErrors()) {
+		if (result.getFieldErrorCount() > errors || (result.getFieldError("CNPJ") == null || result.getFieldError("telefone") == null || result.getFieldError("email") == null)) {
 			return "locadora/cadastro";
 		}
 

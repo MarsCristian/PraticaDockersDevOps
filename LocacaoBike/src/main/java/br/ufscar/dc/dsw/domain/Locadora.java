@@ -16,9 +16,9 @@ import br.ufscar.dc.dsw.validation.UniquedCNPJ;
 @Table(name = "Locadora")
 public class Locadora extends Usuario {
 
-	@UniquedCNPJ (message = "{Unique.editora.CNPJ}")
+	@UniquedCNPJ (message = "{Unique.locadora.CNPJ}")
 	@NotBlank
-	@Size(min = 18, max = 18, message = "{Size.editora.CNPJ}")
+	@Size(min = 18, max = 18, message = "{Size.locadora.CNPJ}")
 	@Column(nullable = false, unique = true, length = 18)
 	private String CNPJ;
 	

@@ -19,13 +19,13 @@ import br.ufscar.dc.dsw.validation.UniquedEmail;
 public class Usuario extends AbstractEntity<Long> {
 
   @NotBlank(message = "{NotNull.usuario.Nome}")
-  @Size(min = 3, max = 256)
+  //@Size(min = 3, max = 256)
   @Column(nullable = false, unique = false, length = 256)
   private String nome;
       
   @UniquedTelefone (message = "{Unique.usuario.telefone}")
   @NotBlank(message = "{NotNull.usuario.telefone}")
-  @Size(min = 3, max = 256)
+  //@Size(min = 3, max = 256)
   @Column(nullable = false, unique = true, length = 256)
   private String telefone;
 
@@ -36,7 +36,7 @@ public class Usuario extends AbstractEntity<Long> {
   private String email;
 
   @NotBlank(message = "{NotNull.usuario.senha}")
-  @Size(min = 3, max = 256)
+  //@Size(min = 3, max = 256)
   @Column(nullable = false, unique = false, length = 256)
   private String senha;
 

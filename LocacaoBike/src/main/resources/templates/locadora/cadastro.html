@@ -49,7 +49,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="telefone">Telefone</label> 
-						<input type="text" class="form-control" id="telefone" 
+						<input type="text" class="form-control" id="telefone" placeholder="(__)_____-____"
 							autofocus="autofocus" th:field="*{telefone}"
 							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid"
 							data-mask="(00)00000-0000" data-mask-reverse="true" />
