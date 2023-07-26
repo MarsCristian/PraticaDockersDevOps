@@ -30,7 +30,7 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="Nome" th:text="#{nome.label}"></label> 
-						<input type="text" class="form-control" id="Nome" placeholder="Nome"
+						<input type="text" class="form-control" id="Nome" th:attr="placeholder=#{nome.label}"
 							autofocus="autofocus" th:field="*{Nome}"
 							th:classappend="${#fields.hasErrors('Nome')} ? is-invalid" />
 						<div class="invalid-feedback">
@@ -40,7 +40,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="cidade" th:text="#{cidade.label}"></label> 
-						<input type="text" class="form-control" id="cidade" placeholder="Cidade - Estado"
+						<input type="text" class="form-control" id="cidade" th:attr="placeholder=#{cidade.label}"
 							autofocus="autofocus" th:field="*{cidade}"
 							th:classappend="${#fields.hasErrors('cidade')} ? is-invalid" />
 
@@ -66,7 +66,7 @@
 					<div class="form-group col-md-6">
 
 						<label for="email" th:text="#{email.label}"></label> 
-						<input type="text" class="form-control" id="email" placeholder="example@example.com"
+						<input type="text" class="form-control" id="email" th:attr="placeholder=#{pr.email.label}"
 							autofocus="autofocus" th:field="*{email}"
 							th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
 
