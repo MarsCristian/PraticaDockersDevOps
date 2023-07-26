@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{locacao.cadastrar.label}"></span></li>
+				</ul>	
+				<a class="btn btn-primary btn-md" th:href="@{/locacoes/listar}"
+					role="button"> <span class="oi oi-spreadsheet" title="Listar"
+					aria-hidden="true"></span> <span th:text="#{locacao.listar.label}"></span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+
+			<div th:replace="fragments/alert"></div>
+
+			<form
+				th:action="${locacao.id == null} ? @{/locacoes/salvar} : @{/locacoes/editar}"
+				th:object="${locacao}" method="POST">
+				
+				<div class="form-row">
+
+					<!-- Não consegui fazer o dropdown funcionar, aparentemente ele não ta pegando nada nessa lista. Preciso de ajuda dos universitários-->
+                    <div class="form-group col-md-6">
+						<label for="cliente">Cliente</label> 
+						<select id="cliente" class="form-control" th:field="*{cliente}"
+							th:classappend="${#fields.hasErrors('cliente')} ? is-invalid">
+							<option value="">Selecione</option>
+							<option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+								th:text="${cliente.Nome}"></option>
+						</select>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{cliente}"></span>
+						</div>
+					</div>
+					
+					<!-- Não consegui fazer o dropdown funcionar, aparentemente ele não ta pegando nada nessa lista. Preciso de ajuda dos universitários-->
+                    <div class="form-group col-md-6">
+						<label for="locadora">Locadora</label> 
+						<select id="locadora" class="form-control" th:field="*{locadora}"
+							th:classappend="${#fields.hasErrors('locadora')} ? is-invalid">
+							<option value="">Selecione</option>
+							<option th:each="locadora : ${locadoras}" th:value="${locadora.id}"
+								th:text="${locadora.Nome}"></option>
+						</select>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{locadora}"></span>
+						</div>
+					</div>
+
+                    <div class="form-group col-md-6">
+						<label for="nome">Data de Locação</label> 
+						<input type="text" class="form-control" id="nome" placeholder="XX/XX/XXXX"
+							autofocus="autofocus" th:field="*{dataLocacao}"
+							th:classappend="${#fields.hasErrors('dataLocacao')} ? is-invalid" 
+							data-mask="00/00/0000"/>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{dataLocacao}"></span>
+						</div>
+					</div>
+
+                    <div class="form-group col-md-6">
+						<label for="nome">Horário de Locação</label> 
+						<input type="text" class="form-control" id="nome" placeholder="XX:00"
+							autofocus="autofocus" th:field="*{horaLocacao}"
+							th:classappend="${#fields.hasErrors('horaLocacao')} ? is-invalid" 
+							data-mask="00:00"/>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{horaLocacao}"></span>
+						</div>
+					</div>
+				</div>
+
+				<input type="hidden" id="id" th:field="*{id}" />
+				<button type="submit" class="btn btn-primary btn-sm" th:text="#{salvar.label}"></button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

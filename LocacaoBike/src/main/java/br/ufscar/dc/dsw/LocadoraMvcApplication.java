@@ -64,6 +64,7 @@ public class LocadoraMvcApplication {
             clienteDAO.save(c1);
             System.out.println("Inseriu c1");
 
+
             List<Locadora> locadora = locadoraDAO.findAll();
             System.out.println("Printando todas as locadoras adicionadas");
             for(Locadora l : locadora) {
