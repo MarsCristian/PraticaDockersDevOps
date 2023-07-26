@@ -29,12 +29,12 @@
 				
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="Nome" th:text="#{nome.label}"></label> 
-						<input type="text" class="form-control" id="Nome" placeholder="Nome"
-							autofocus="autofocus" th:field="*{Nome}"
-							th:classappend="${#fields.hasErrors('Nome')} ? is-invalid" />
+						<label for="nome" th:text="#{nome.label}"></label> 
+						<input type="text" class="form-control" id="nome" placeholder="Nome"
+							autofocus="autofocus" th:field="*{nome}"
+							th:classappend="${#fields.hasErrors('nome')} ? is-invalid" />
 						<div class="invalid-feedback">
-							<span th:errors="*{Nome}"></span>
+							<span th:errors="*{nome}"></span>
 						</div>
 					</div>
 
@@ -55,7 +55,7 @@
 						<input type="text" class="form-control" id="telefone" placeholder="(__)_____-____"
 							autofocus="autofocus" th:field="*{telefone}"
 							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid"
-							data-mask="(00)00000-0000" data-mask-reverse="true" />
+							data-mask='(00)00000-0000' data-mask-reverse="true" />
 
 
 						<div class="invalid-feedback">
@@ -76,7 +76,7 @@
 					</div>
 					
 					<div class="form-group col-md-6">
-						<label for="CNPJ" th:text="#{email.label}"></label> 
+						<label for="CNPJ" th:text="#{CNPJ.label}"></label> 
 						<input type="text" class="form-control" id="CNPJ" placeholder="__.___.___/____-__"
 							th:readonly="${locadora.id != null}"
 							autofocus="autofocus" th:field="*{CNPJ}"
