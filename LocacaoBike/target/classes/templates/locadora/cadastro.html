@@ -22,9 +22,11 @@
 		<div class="container" id="cadastro">
 
 			<div th:replace="fragments/alert"></div>
+
 			<form
 				th:action="${locadora.id == null} ? @{/locadoras/salvar} : @{/locadoras/editar}"
 				th:object="${locadora}" method="POST">
+				
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="Nome" th:text="#{nome.label}"></label> 
@@ -49,10 +51,11 @@
 
 					<div class="form-group col-md-6">
 
-						<label for="telefone" th:text="#{telefone.label}"></label> 
-						<input type="text" class="form-control" id="telefone" placeholder="(xx) XXXXX-XXXX"
-							autofocus="autofocus" istar.locadoras.labelth:field="*{telefone}"
-							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid" />
+						<label for="telefone">Telefone</label> 
+						<input type="text" class="form-control" id="telefone" placeholder="(__)_____-____"
+							autofocus="autofocus" th:field="*{telefone}"
+							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid"
+							data-mask="(00)00000-0000" data-mask-reverse="true" />
 
 
 						<div class="invalid-feedback">
@@ -86,12 +89,12 @@
 
 					<div class="form-group col-md-6">
 
+						<label for="papel">Papel</label> 
+						<input type="text" class="form-control" id="papel" value="Locadora"
+							th:readonly="${locadora.papel != null}"
+							autofocus="autofocus" th:field="*{papel}"
+							th:classappend="${#fields.hasErrors('papel')} ? is-invalid" />
 
-						<label for="papel" th:text="#{papel.label}"></label> 
-						<input type="text" class="form-control" id="papel" placeholder="__.___.___/____-__"
-							autofocus="autofocus" th:field="*{CNPJ}"
-							th:classappend="${#fields.hasErrors('CNPJ')} ? is-invalid" 
-							data-mask="00.000.000/0000-00" data-mask-reverse="true" />            
 
 						<div class="invalid-feedback">
 							<span th:errors="*{papel}"></span>
