@@ -1,3 +1,6 @@
+// "locadora" Referencia à pasta locadora, no templates
+// "locadoras" Referencia o próprio LocadoraController
+
 package br.ufscar.dc.dsw.controller;
 
 import java.util.List;
@@ -61,6 +64,18 @@ public class LocadoraController {
 		return "locadora/cadastro";
 	}
 
+	@GetMapping("/procurarPorCNPJ/{CNPJ}")
+	public String buscarPorCNPJ(@PathVariable("CNPJ") String CNPJ, ModelMap model) {
+		model.addAttribute("locadora", locadoraService.buscarPorCNPJ(CNPJ));
+		return "locadora/cadastro"; //Verificar pra onde isso retornaria de fato
+	}
+
+	@GetMapping("/procurarPorTelefone/{telefone}")
+	public String buscarPorTelefone(@PathVariable("telefone") String telefone, ModelMap model) {
+		model.addAttribute("locadora", locadoraService.buscarPorTelefone(telefone));
+		return "locadora/cadastro"; //Verificar pra onde isso retornaria de fato
+	}
+
 	@PostMapping("/editar")
 	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
 
@@ -73,14 +88,21 @@ public class LocadoraController {
 		return "redirect:/locadoras/listar";
 	}
 
-	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+	@GetMapping("/excluirPorId/{id}") //Mudar no html para excluir por id
+	public String excluirPorID(@PathVariable("id") Long id, RedirectAttributes attr) {
 		locadoraService.excluirPorId(id);
 		attr.addFlashAttribute("sucess", "Locadora excluída com sucesso.");
 		return "redirect:/locadoras/listar";
 	}
 
-	@ModelAttribute("locacoes")
+	@GetMapping("/excluirPorCNPJ/{CNPJ}") 
+	public String excluirPorCNPJ(@PathVariable("CNPJ") String CNPJ, RedirectAttributes attr) {
+		locadoraService.excluirPorCNPJ(CNPJ);
+		attr.addFlashAttribute("sucess", "Locadora excluída com sucesso.");
+		return "redirect:/locadoras/listar";
+	}
+
+	@ModelAttribute("locacoes") // Alguém entendeu a utilidade disso? Porque eu gostaria de printar todas as editoras por aqui?
 	public List<Locacao> listaLocacoes() {
 		return locacaoService.buscarTodos();
 	}

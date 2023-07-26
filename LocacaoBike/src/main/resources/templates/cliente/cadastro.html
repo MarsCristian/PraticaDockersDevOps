@@ -23,7 +23,7 @@
 
 			<div th:replace="fragments/alert"></div>
 			<form
-				th:action="${Cliente.id == null} ? @{/cliente/salvar} : @{/cliente/editar}"
+				th:action="${Cliente.id == null} ? @{/cliente/salvar} : @{/cliente/editar}" <!-- /.Esse cliente é o que liga com o controller né? Lá está settado como "clientes", então esse também não deveria ser clientes?  --></form>
 				th:object="${Cliente}" method="POST">
 				<div class="form-row">
                     <div class="form-group col-md-6">
