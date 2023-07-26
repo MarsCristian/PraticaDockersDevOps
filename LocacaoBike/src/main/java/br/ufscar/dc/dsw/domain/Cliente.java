@@ -51,6 +51,14 @@ public class Cliente extends Usuario {
 		this.sexo = sexo;
 	}
 
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+    public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
 	public List<Locacao> getLocacoes() {
 		return locacoes;
 	}
