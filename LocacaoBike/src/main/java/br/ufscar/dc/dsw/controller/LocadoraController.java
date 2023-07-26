@@ -97,6 +97,7 @@ public class LocadoraController {
 
 	@GetMapping("/excluirPorId/{id}") //Mudar no html para excluir por id
 	public String excluirPorID(@PathVariable("id") Long id, RedirectAttributes attr) {
+		System.out.println("Entrou no excluir");
 		locadoraService.excluirPorId(id);
 		attr.addFlashAttribute("sucess", "Locadora excluída com sucesso.");
 		return "redirect:/locadoras/listar";

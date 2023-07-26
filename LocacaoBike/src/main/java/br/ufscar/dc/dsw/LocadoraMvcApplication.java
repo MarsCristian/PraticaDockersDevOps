@@ -60,8 +60,8 @@ public class LocadoraMvcApplication {
             c1.setCPF("446.023.648-61");
             c1.setSexo("Masculino");
             c1.setTelefone("(16)12345-1235");
-            c1.setDataNascimento("08/09/1999")
-            locadoraDAO.save(c1);
+            c1.setDataNascimento("08/09/1999");
+            clienteDAO.save(c1);
             System.out.println("Inseriu c1");
 
             List<Locadora> locadora = locadoraDAO.findAll();
