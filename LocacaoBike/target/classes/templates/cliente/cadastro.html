@@ -11,6 +11,7 @@
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+
 						<span th:text="#{cliente.cadastrar.label}"></span></li>
 				</ul>
 						<span th:text="#{cliente.cadastrar.label}"></span></li>
@@ -50,7 +51,7 @@
 						<label for="CPF" th:text="#{CPF.label}"></label> 
 						<input type="text" class="form-control" id="CPF" placeholder="___.___.___-__"
 							autofocus="autofocus" th:field="*{CPF}"
-							th:classappend="${#fields.hasErrors('CPF')} ? is-invalid" 
+							th:classappend="${#fields.hasErrors('CPF') && cliente.id == null} ? is-invalid" 
 							data-mask="000.000.000-00" data-mask-reverse="true"/>
 						
 						<div class="invalid-feedback">
@@ -83,7 +84,7 @@
 						<label for="telefone" th:text="#{telefone.label}"></label> 
 						<input type="text" class="form-control" id="telefone" placeholder="(xx) XXXXX-XXXX"
 							autofocus="autofocus" th:field="*{telefone}"
-							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid" 
+							th:classappend="${#fields.hasErrors('telefone') && cliente.id == null} ? is-invalid" 
 							data-mask="(00)00000-0000" data-mask-reverse="true"/>
 
 						<div class="invalid-feedback">
@@ -95,7 +96,7 @@
 						<label for="email" th:text="#{email.label}"></label> 
 						<input type="text" class="form-control" id="email" placeholder="example@example.com"
 							autofocus="autofocus" th:field="*{email}"
-							th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
+							th:classappend="${#fields.hasErrors('email') && cliente.id == null} ? is-invalid" />
 						
 						<div class="invalid-feedback">
 							<span th:errors="*{email}"></span>
