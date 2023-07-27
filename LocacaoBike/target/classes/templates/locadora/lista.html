@@ -48,9 +48,9 @@
 		<div class="container" id="listagem"></div>
 
 		<div class="form-group">
-			<label for="cidade">Filtrar por Cidade</label>
+			<label for="cidade" th:text="#{filtro.label}"></label>
 			<select id="modelFilter" class="form-control" onchange="filterFunction()">
-				<option value="">Todas as cidades</option>
+				<option value="" th:text="#{filtro.city.label}"></option>
 				<option th:each="locadora : ${locadoras}" th:value="${locadora.cidade}" th:text="${locadora.cidade}"></option>
 			</select>
 		</div>

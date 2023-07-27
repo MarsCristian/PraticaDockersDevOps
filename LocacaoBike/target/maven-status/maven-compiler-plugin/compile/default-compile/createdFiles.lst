@@ -9,8 +9,8 @@ br/ufscar/dc/dsw/validation/UniquedTelefoneValidator.class
 br/ufscar/dc/dsw/service/spec/ILocacaoService.class
 br/ufscar/dc/dsw/LocadoraMvcApplication.class
 br/ufscar/dc/dsw/domain/Cliente.class
-br/ufscar/dc/dsw/validation/UniquedCPFValidator.class
 br/ufscar/dc/dsw/domain/AbstractEntity.class
+br/ufscar/dc/dsw/validation/UniquedCPFValidator.class
 br/ufscar/dc/dsw/controller/ErrorViewController.class
 br/ufscar/dc/dsw/controller/LocadoraController.class
 br/ufscar/dc/dsw/validation/UniquedTelefone.class
@@ -25,6 +25,6 @@ br/ufscar/dc/dsw/controller/LocacaoController.class
 br/ufscar/dc/dsw/service/spec/ILocadoraService.class
 br/ufscar/dc/dsw/validation/UniquedCNPJ.class
 br/ufscar/dc/dsw/domain/Usuario.class
-br/ufscar/dc/dsw/validation/UniquedEmail.class
 br/ufscar/dc/dsw/service/impl/UsuarioService.class
+br/ufscar/dc/dsw/validation/UniquedEmail.class
 br/ufscar/dc/dsw/validation/UniquedEmailValidator.class
