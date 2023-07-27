@@ -1,8 +1,8 @@
 package br.ufscar.dc.dsw;
 
 import java.util.List;
-
-import java.math.BigDecimal;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,6 +30,7 @@ public class LocadoraMvcApplication {
 						
             System.out.println("Testando o banco");
             
+            // Inserindo Locadoras
             Locadora l1 = new Locadora();
             l1.setNome("Conserta Bike");
             l1.setEmail("conserta_bike@gmail.com");
@@ -52,6 +53,7 @@ public class LocadoraMvcApplication {
             locadoraDAO.save(l2);
             System.out.println("Inseriu l1");
 
+            //Inserindo Clientes
             Cliente c1 = new Cliente();
             c1.setNome("Pietro");
             c1.setEmail("pietro@pietro.com");
@@ -64,12 +66,25 @@ public class LocadoraMvcApplication {
             clienteDAO.save(c1);
             System.out.println("Inseriu c1");
 
+            //Declaração de variáveis para a validação das datas
+            SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy HH:mm"); 
+            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm"); 
+            Date DataAtual = new Date();
+            Date test = formatoData.parse("27/07/2023 17:00");
+
+            //Inserindo Locações
             Locacao lo1 = new Locacao();
             lo1.setCliente(c1);
             lo1.setLocadora(l1);
-            lo1.setDataLocacao("08/09/2020");
-            lo1.setHoraLocacao("10:00");
-            locacaoDAO.save(lo1);
+
+            if (test.after(DataAtual)) {
+                  lo1.setDataHoraLocacao("27/07/2023 17:00");
+                  locacaoDAO.save(lo1);
+            }
+            else {
+                  lo1.setDataHoraLocacao("25/10/2023 10:00");
+                  locacaoDAO.save(lo1);
+            }
 
             List<Locadora> locadora = locadoraDAO.findAll();
             System.out.println("Printando todas as locadoras adicionadas");

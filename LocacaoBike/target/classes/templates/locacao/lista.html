@@ -32,8 +32,7 @@
 							<th>#</th>
 							<th>CPF do Cliente</th>
 							<th>CNPJ da Locadora</th>
-							<th>Data de Locação</th>
-							<th>Hora de Locação</th>
+							<th>Data e Hora de Locação</th>
 							<th>Ação</th>
 						</tr>
 					</thead>
@@ -42,8 +41,7 @@
 							<td th:text="${locacao.id}"></td>
 							<td th:text="${locacao.cliente.CPF}"></td>
 							<td th:text="${locacao.locadora.CNPJ}"></td>
-							<td th:text="${locacao.dataLocacao}"></td>
-							<td th:text="${locacao.horaLocacao}"></td>
+							<td th:text="${locacao.dataHoraLocacao}"></td>
 							<td colspan="2">
 								<a class="btn btn-info btn-sm" th:href="@{/locacoes/editar/{id} (id=${locacao.id}) }"
 									role="button"> 

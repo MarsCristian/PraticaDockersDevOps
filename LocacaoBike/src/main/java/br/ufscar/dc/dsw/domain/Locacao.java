@@ -1,29 +1,24 @@
 package br.ufscar.dc.dsw.domain;
 
 import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> {
 
-    @NotBlank(message = "{NotNull.locacao.dataLocacao}")
-    @Size(min = 3, max = 256)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(nullable = false, unique = false, length = 256)
-    private String dataLocacao;
-
-    @NotBlank(message = "{NotNull.locacao.horaLocacao}")
-    @Size(min = 3, max = 256)
-    @Column(nullable = false, unique = false, length = 256)
-    private String horaLocacao;
+    private String dataHoraLocacao;
 
     //@NotBlank(message = "{NotNull.locacao.locadora}")
 	@ManyToOne
@@ -35,20 +30,12 @@ public class Locacao extends AbstractEntity<Long> {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-    public String getDataLocacao() {
-		return dataLocacao;
+    public String getDataHoraLocacao() {
+		return dataHoraLocacao;
 	}
 
-    public void setDataLocacao(String dataLocacao) {
-		this.dataLocacao = dataLocacao;
-	}
-
-    public String getHoraLocacao() {
-		return horaLocacao;
-	}
-
-    public void setHoraLocacao(String horaLocacao) {
-		this.horaLocacao = horaLocacao;
+    public void setDataHoraLocacao(String dataHoraLocacao) {
+		this.dataHoraLocacao = dataHoraLocacao;
 	}
 
 	public Locadora getLocadora() {
