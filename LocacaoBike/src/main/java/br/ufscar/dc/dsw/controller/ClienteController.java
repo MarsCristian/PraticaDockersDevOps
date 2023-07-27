@@ -70,9 +70,19 @@ public class ClienteController {
 
 	@PostMapping("/editar")
 	public String editar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attr) {
+		System.out.println("Entrou no /editar cliente");
+		Integer errors = 0;
+		if (result.getFieldError("CPF") != null)
+			errors += 1;
+		if (result.getFieldError("email") != null)
+			errors += 1;
+		if (result.getFieldError("telefone") != null)
+			errors += 1;
 
-		if (result.hasErrors()) {
-			return "cliente/cadastro";
+		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("senha") != null || result.getFieldError("nome") != null || result.getFieldError("sexo") != null || result.getFieldError("dataNascimento") != null) {
+			System.out.println("Falhou");
+
+			return "locadora/cadastro";
 		}
 
 		clienteService.salvar(cliente);
