@@ -123,4 +123,9 @@ public class LocadoraController {
 	public List<Locacao> listaLocacoes() {
 		return locacaoService.buscarTodos();
 	}
+
+	@ModelAttribute("locadoras") 
+	public List<Locadora> listaLocadoras() {
+		return locadoraService.buscarTodos();
+	}
 }

@@ -29,14 +29,13 @@
 				
 				<div class="form-row">
 
-					<!-- Não consegui fazer o dropdown funcionar, aparentemente ele não ta pegando nada nessa lista. Preciso de ajuda dos universitários-->
                     <div class="form-group col-md-6">
 						<label for="cliente">Cliente</label> 
 						<select id="cliente" class="form-control" th:field="*{cliente}"
 							th:classappend="${#fields.hasErrors('cliente')} ? is-invalid">
 							<option value="">Selecione</option>
 							<option th:each="cliente : ${clientes}" th:value="${cliente.id}"
-								th:text="${cliente.Nome}"></option>
+								th:text="${cliente.nome}"></option>
 						</select>
 
 						<div class="invalid-feedback">
@@ -44,7 +43,6 @@
 						</div>
 					</div>
 					
-					<!-- Não consegui fazer o dropdown funcionar, aparentemente ele não ta pegando nada nessa lista. Preciso de ajuda dos universitários-->
                     <div class="form-group col-md-6">
 						<label for="locadora">Locadora</label> 
 						<select id="locadora" class="form-control" th:field="*{locadora}"

@@ -21,7 +21,18 @@
 			</div>
 		</nav>
 
-		<div class="container" id="listagem">
+		<div class="container" id="listagem"></div>
+
+			<div class="form-group">
+				<label for="cidade">Filtrar por Cidade</label>
+				<select id="cidade" class="form-control">
+					<option value="">Todas as cidades</option>
+					<option th:each="locadora : ${locadoras}" th:value="${locadora.id}" 
+					th:text="${locadora.cidade}"></option>
+				</select>
+			</div>
+
+		
 
 			<div th:replace="fragments/alert"></div>
 
@@ -62,7 +73,31 @@
 			</div>
 		</div>
 
+		
+
 		<div th:replace="fragments/modal :: modal"></div>
+
+
+
+
+		<script th:inline="javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                const selectCidade = document.getElementById("cidade");
+                const locadoras = document.querySelectorAll("[data-cidade]");
+
+                selectCidade.addEventListener("change", function () {
+                    const cidadeSelecionada = selectCidade.value;
+                    for (const locadora of locadoras) {
+                        const cidadeLocadora = locadora.getAttribute("data-cidade");
+                        if (cidadeSelecionada === "" || cidadeSelecionada === cidadeLocadora) {
+                            locadora.style.display = "table-row";
+                        } else {
+                            locadora.style.display = "none";
+                        }
+                    }
+                });
+            });
+        </script>
 	</section>
 </body>
 </html>
