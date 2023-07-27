@@ -83,7 +83,7 @@ public class LocacaoController {
 	public String excluirPorId(@PathVariable("id") Long id, RedirectAttributes attr) {
 		locacaoService.excluirPorId(id);
 		attr.addFlashAttribute("sucess", "Locação excluída com sucesso.");
-		return "redirect:/locacao/listar";
+		return "redirect:/locacoes/listar";
 	}
 
 	@ModelAttribute("clientes")
