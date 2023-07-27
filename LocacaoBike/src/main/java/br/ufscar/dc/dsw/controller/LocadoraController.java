@@ -34,9 +34,9 @@ public class LocadoraController {
 	private ILocacaoService locacaoService;
 
 	@GetMapping("/cadastrar")
-	public String cadastrar(Locadora locadora, ModelMap model) {
+	public String cadastrar(Locadora locadora) {
 		System.out.println("Cadastrando nova Locadora");
-		model.addAttribute("Locadora", locadora);
+		//model.addAttribute("Locadora", locadora);
 		return "locadora/cadastro";
 	}
 
@@ -50,9 +50,6 @@ public class LocadoraController {
 	public String salvar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
 
 		System.out.println("Salvar locadora");
-
-
-		System.out.println(result.getAllErrors());
 
 		if (result.hasErrors()) {
 			System.out.println("Entrou no if");
@@ -85,11 +82,23 @@ public class LocadoraController {
 
 	@PostMapping("/editar")
 	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
+		System.out.println("Entrou no /editar");
+		Integer errors = 0;
+		if (result.getFieldError("CNPJ") != null)
+			errors += 1;
+		if (result.getFieldError("email") != null)
+			errors += 1;
+		if (result.getFieldError("telefone") != null)
+			errors += 1;
 
-		if (result.hasErrors()) {
+		System.out.println(errors);
+		System.out.println(result.getFieldErrorCount()); 
+		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("senha") != null || result.getFieldError("nome") != null || result.getFieldError("cidade") != null) {
+			System.out.println("Falhou");
+
 			return "locadora/cadastro";
 		}
-
+		
 		locadoraService.salvar(locadora);
 		attr.addFlashAttribute("sucess", "Locadora editada com sucesso.");
 		return "redirect:/locadoras/listar";
@@ -97,6 +106,7 @@ public class LocadoraController {
 
 	@GetMapping("/excluirPorId/{id}") //Mudar no html para excluir por id
 	public String excluirPorID(@PathVariable("id") Long id, RedirectAttributes attr) {
+		System.out.println("Entrou no excluir");
 		locadoraService.excluirPorId(id);
 		attr.addFlashAttribute("sucess", "Locadora excluída com sucesso.");
 		return "redirect:/locadoras/listar";

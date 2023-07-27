@@ -11,12 +11,12 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<i class="oi oi-caret-right"></i>
-						<span th:text="#{locadoras.listar.label}"></span>
+						<span th:text="#{cliente.listar.label}"></span>
 					</li>
 				</ul>
-				<a class="btn btn-primary btn-md" th:href="@{/locadoras/cadastrar}" role="button"> 
+				<a class="btn btn-primary btn-md" th:href="@{/clientes/cadastrar}" role="button"> 
 					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
-					<span th:text="#{locadora.nova.label}"></span>
+					<span th:text="#{cliente.nova.label}"></span>
 				</a>
 			</div>
 		</nav>
@@ -30,28 +30,30 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th th:text="#{CNPJ.label}"></th>
+							<th th:text="#{CPF.label}"></th>
 							<th th:text="#{nome.label}"></th>
                             <th th:text="#{telefone.label}"></th>
                             <th th:text="#{email.label}"></th>
-                            <th th:text="#{cidade.label}"></th>
+                            <th th:text="#{sexo.label}"></th>
+                            <th th:text="#{nascimento.label}"></th>
 							<th th:text="#{acao.label}"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="Locadora : ${locadoras}">
-							<td th:text="${Locadora.Id}"></td>
-							<td th:text="${Locadora.CNPJ}"></td>
-							<td th:text="${Locadora.nome}"></td>
-                            <td th:text="${Locadora.telefone}"></td>
-                            <td th:text="${Locadora.email}"></td>
-                            <td th:text="${Locadora.cidade}"></td>
+						<tr th:each="Cliente : ${clientes}">
+							<td th:text="${Cliente.id}"></td>
+							<td th:text="${Cliente.CPF}"></td>
+							<td th:text="${Cliente.nome}"></td>
+                            <td th:text="${Cliente.telefone}"></td>
+                            <td th:text="${Cliente.email}"></td>
+                            <td th:text="${Cliente.sexo}"></td>
+                            <td th:text="${Cliente.dataNascimento}"></td>
 							<td colspan="2">
-								<a class="btn btn-info btn-sm" th:href="@{/locadoras/editar/{id} (id=${Locadora.id}) }"
+								<a class="btn btn-info btn-sm" th:href="@{/clientes/editar/{id} (id=${Cliente.id}) }"
 									role="button"> 
 									<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
 								</a>
-								<button th:id="${#strings.concat('btn_locadoras/excluirPorId/', Locadora.Id)}" 
+								<button th:id="${#strings.concat('btn_clientes/excluirPorId/', Cliente.Id)}" 
 									type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
 									<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
 								</button>

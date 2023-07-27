@@ -52,6 +52,25 @@ public class LocadoraMvcApplication {
             locadoraDAO.save(l2);
             System.out.println("Inseriu l1");
 
+            Cliente c1 = new Cliente();
+            c1.setNome("Pietro");
+            c1.setEmail("pietro@pietro.com");
+            c1.setSenha("123");
+            c1.setPapel("Cliente");
+            c1.setCPF("446.023.648-61");
+            c1.setSexo("Masculino");
+            c1.setTelefone("(16)12345-1235");
+            c1.setDataNascimento("08/09/1999");
+            clienteDAO.save(c1);
+            System.out.println("Inseriu c1");
+
+            Locacao lo1 = new Locacao();
+            lo1.setCliente(c1);
+            lo1.setLocadora(l1);
+            lo1.setDataLocacao("08/09/2020");
+            lo1.setHoraLocacao("10:00");
+            locacaoDAO.save(lo1);
+
             List<Locadora> locadora = locadoraDAO.findAll();
             System.out.println("Printando todas as locadoras adicionadas");
             for(Locadora l : locadora) {

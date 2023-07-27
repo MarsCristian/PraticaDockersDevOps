@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
@@ -27,11 +26,11 @@ public class Locacao extends AbstractEntity<Long> {
     private String horaLocacao;
 
     //@NotBlank(message = "{NotNull.locacao.locadora}")
-	//@ManyToOne
-	//@JoinColumn(name = "locadora_id")
-	//private Locadora locadora;	
+	@ManyToOne
+	@JoinColumn(name = "locadora_id")
+	private Locadora locadora;	
 
-    @NotBlank()
+    //@NotBlank()
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
@@ -52,13 +51,13 @@ public class Locacao extends AbstractEntity<Long> {
 		this.horaLocacao = horaLocacao;
 	}
 
-	//public Locadora getLocadora() {
-	//	return locadora;
-	//}
-//
-	//public void setLocadora(Locadora locadora) {
-	//	this.locadora = locadora;
-	//}
+	public Locadora getLocadora() {
+		return locadora;
+	}
+
+	public void setLocadora(Locadora locadora) {
+		this.locadora = locadora;
+	}
 
     public Cliente getCliente() {
 		return cliente;

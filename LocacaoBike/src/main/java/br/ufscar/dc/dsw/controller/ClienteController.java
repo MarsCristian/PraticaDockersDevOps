@@ -84,14 +84,14 @@ public class ClienteController {
 	public String excluirPorId(@PathVariable("id") Long id, RedirectAttributes attr) {
 		clienteService.excluirPorId(id);
 		attr.addFlashAttribute("sucess", "Cliente excluído com sucesso.");
-		return "redirect:/cliente/listar";
+		return "redirect:/clientes/listar";
 	}
 
 	@GetMapping("/excluirPorCPF/{CPF}")
 	public String excluirPorCPF(@PathVariable("CPF") String CPF, RedirectAttributes attr) {
 		clienteService.excluirPorCPF(CPF);
 		attr.addFlashAttribute("sucess", "Cliente excluído com sucesso.");
-		return "redirect:/cliente/listar";
+		return "redirect:/clientes/listar";
 	}
 
 	@ModelAttribute("locacoes")

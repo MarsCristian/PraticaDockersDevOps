@@ -18,14 +18,14 @@ import br.ufscar.dc.dsw.validation.UniquedEmail;
 @Table(name = "Usuario")
 public class Usuario extends AbstractEntity<Long> {
 
-  @NotBlank(message = "{NotNull.usuario.Nome}")
-  @Size(min = 3, max = 256)
+  @NotBlank(message = "{NotNull.usuario.nome}")
+  //@Size(min = 3, max = 256)
   @Column(nullable = false, unique = false, length = 256)
   private String nome;
       
   @UniquedTelefone (message = "{Unique.usuario.telefone}")
   @NotBlank(message = "{NotNull.usuario.telefone}")
-  @Size(min = 3, max = 256)
+  //@Size(min = 3, max = 256)
   @Column(nullable = false, unique = true, length = 256)
   private String telefone;
 
@@ -36,7 +36,7 @@ public class Usuario extends AbstractEntity<Long> {
   private String email;
 
   @NotBlank(message = "{NotNull.usuario.senha}")
-  @Size(min = 3, max = 256)
+  //@Size(min = 3, max = 256)
   @Column(nullable = false, unique = false, length = 256)
   private String senha;
 
@@ -58,7 +58,8 @@ public class Usuario extends AbstractEntity<Long> {
   }
 
   public void setTelefone(String telefone) {
-  this.telefone = telefone;
+		System.out.println("set tel");
+    this.telefone = telefone;
   }
 
 
@@ -67,7 +68,8 @@ public class Usuario extends AbstractEntity<Long> {
   }
 
   public void setEmail(String email) {
-  this.email = email;
+		System.out.println("set email");
+    this.email = email;
   }
 
   public String getSenha() {

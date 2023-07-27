@@ -16,9 +16,9 @@ import br.ufscar.dc.dsw.validation.UniquedCNPJ;
 @Table(name = "Locadora")
 public class Locadora extends Usuario {
 
-	@UniquedCNPJ (message = "{Unique.editora.CNPJ}")
+	@UniquedCNPJ (message = "{Unique.locadora.CNPJ}")
 	@NotBlank
-	@Size(min = 18, max = 18, message = "{Size.editora.CNPJ}")
+	@Size(min = 18, max = 18, message = "{Size.locadora.CNPJ}")
 	@Column(nullable = false, unique = true, length = 18)
 	private String CNPJ;
 	
@@ -27,14 +27,15 @@ public class Locadora extends Usuario {
     @Column(nullable = false, unique = false, length = 256)
     private String cidade;
 
-	//@OneToMany(mappedBy = "locadora")
-	//private List<Locacao> locacoes;
+	@OneToMany(mappedBy = "locadora")
+	private List<Locacao> locacoes;
 	
 	public String getCNPJ() {
 		return CNPJ;
 	}
 
 	public void setCNPJ(String CNPJ) {
+		System.out.println("set CNPJ");
 		this.CNPJ = CNPJ;
 	}
 
@@ -46,11 +47,11 @@ public class Locadora extends Usuario {
 		this.cidade = cidade;
 	}
 
-	//public List<Locacao> getLocacoes() {
-	//	return locacoes;
-	//}
-//
-	//public void setLocacoes(List<Locacao> locacoes) {
-	//	this.locacoes = locacoes;
-	//}
+	public List<Locacao> getLocacoes() {
+		return locacoes;
+	}
+
+	public void setLocacoes(List<Locacao> locacoes) {
+		this.locacoes = locacoes;
+	}
 }
