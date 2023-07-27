@@ -93,9 +93,8 @@ public class LocadoraController {
 
 		System.out.println(errors);
 		System.out.println(result.getFieldErrorCount()); 
-		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("senha") != null) {
+		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("senha") != null || result.getFieldError("nome") != null || result.getFieldError("cidade") != null) {
 			System.out.println("Falhou");
-			System.out.println(result.getFieldError("senha") == null);
 
 			return "locadora/cadastro";
 		}
