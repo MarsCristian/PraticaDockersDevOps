@@ -5,6 +5,7 @@
 </head>
 <body>
 
+	
 	<section class="layout-content" layout:fragment="corpo">
 
 		<nav class="navbar navbar-expand-md bg-light">
@@ -55,14 +56,18 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="nome" th:text="#{sexo.label}"></label> 
-						<input type="text" class="form-control" id="Sexo" placeholder="Sexo"
-							autofocus="autofocus" th:field="*{sexo}"
-							th:classappend="${#fields.hasErrors('sexo')} ? is-invalid" />
+						<label for="sexo" th:text="#{sexo.label}"></label>
+						<select id="sexo" class="form-control" th:field="*{sexo}" th:classappend="${#fields.hasErrors('sexo')} ? is-invalid" autofocus="autofocus">
+							<option value="">Selecione</option>
+							<option value="masculino">Masculino</option>
+							<option value="feminino">Feminino</option>
+						</select>
 						<div class="invalid-feedback">
 							<span th:errors="*{sexo}"></span>
 						</div>
 					</div>
+					
+					
 
 					<div class="form-group col-md-6">
 						<label for="nome" th:text="#{nascimento.label}"></label> 
@@ -81,7 +86,7 @@
 						<input type="text" class="form-control" id="telefone" placeholder="(xx) XXXXX-XXXX"
 							autofocus="autofocus" th:field="*{telefone}"
 							th:classappend="${#fields.hasErrors('telefone') && cliente.id == null} ? is-invalid" 
-							data-mask="(00)00000-0000" data-mask-reverse="true"/>
+							data-mask="(00)00000-0000"/>
 
 						<div class="invalid-feedback">
 							<span th:errors="*{telefone}"></span>
@@ -110,19 +115,21 @@
 						</div>
 					</div>
 
+					
+
 					<div class="form-group col-md-6">
-
-						<label for="papel" th:text="#{papel.label}"></label> 
-						<input type="text" class="form-control" id="papel" value="Cliente"
-							th:readonly="${cliente.papel != null}"
-							autofocus="autofocus" th:field="*{papel}"
-							th:classappend="${#fields.hasErrors('papel')} ? is-invalid" />
-
-
+						<label for="papel" th:text="#{papel.label}"></label>
+						<input type="text" class="form-control" id="papel" readonly
+							   th:field="*{papel}" th:classappend="${#fields.hasErrors('papel')} ? is-invalid"
+							   autofocus="autofocus" />
+					
 						<div class="invalid-feedback">
 							<span th:errors="*{papel}"></span>
 						</div>
 					</div>
+					
+					
+					
 
 
 				</div>
@@ -130,6 +137,12 @@
 				<button type="submit" class="btn btn-primary btn-sm" th:text="#{salvar.label}"></button>
 			</form>
 		</div>
+
+		<script th:inline="javascript">
+			document.addEventListener('DOMContentLoaded', function() {
+				document.getElementById('papel').value = 'Cliente';
+			});
+		</script>
 	</section>
 </body>
 </html>

@@ -89,14 +89,11 @@
 					</div>
 
 					<div class="form-group col-md-6">
-
-						<label for="papel" th:text="#{papel.label}"></label> 
-						<input type="text" class="form-control" id="papel" value="Locadora"
-							th:readonly="${locadora.papel != null}"
-							autofocus="autofocus" th:field="*{papel}"
-							th:classappend="${#fields.hasErrors('papel')} ? is-invalid" />
-
-
+						<label for="papel" th:text="#{papel.label}"></label>
+						<input type="text" class="form-control" id="papel" readonly
+							   th:field="*{papel}" th:classappend="${#fields.hasErrors('papel')} ? is-invalid"
+							   autofocus="autofocus" />
+					
 						<div class="invalid-feedback">
 							<span th:errors="*{papel}"></span>
 						</div>
@@ -118,6 +115,12 @@
 				<button type="submit" class="btn btn-primary btn-sm" th:text="#{salvar.label}"></button>
 			</form>
 		</div>
+
+		<script th:inline="javascript">
+			document.addEventListener('DOMContentLoaded', function() {
+				document.getElementById('papel').value = 'Locadora';
+			});
+		</script>
 	</section>
 </body>
 </html>

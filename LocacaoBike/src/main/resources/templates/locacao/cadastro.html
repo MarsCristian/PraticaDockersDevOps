@@ -49,7 +49,7 @@
 							th:classappend="${#fields.hasErrors('locadora')} ? is-invalid">
 							<option value="">Selecione</option>
 							<option th:each="locadora : ${locadoras}" th:value="${locadora.id}"
-								th:text="${locadora.Nome}"></option>
+								th:text="${locadora.nome + ' - ' + locadora.cidade}"></option>
 						</select>
 
 						<div class="invalid-feedback">
