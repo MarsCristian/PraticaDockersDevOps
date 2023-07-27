@@ -55,7 +55,7 @@
 						<label for="telefone" th:text="#{telefone.label}"></label>  
 						<input type="text" class="form-control" id="telefone" placeholder="(__)_____-____"
 							autofocus="autofocus" th:field="*{telefone}"
-							th:classappend="${(#fields.hasErrors('telefone') && locadora.id == null) || ((#fields.errors('telefone').size > 1 || locadora.telefone.length() < 1) && locadora.id != null) } ? is-invalid"
+							th:classappend="${(#fields.hasErrors('telefone') && locadora.id == null) || (locadora.id != null && (#fields.errors('telefone').size > 1 || 1 > locadora.telefone.length())) } ? is-invalid"
 							data-mask='(00)00000-0000' data-mask-reverse="true" />
 
 
@@ -69,7 +69,7 @@
 						<label for="email" th:text="#{email.label}"></label> 
 						<input type="text" class="form-control" id="email" th:attr="placeholder=#{pr.email.label}"
 							autofocus="autofocus" th:field="*{email}"
-							th:classappend="${(#fields.hasErrors('email') && locadora.id == null) || ((#fields.errors('email').size > 1 || locadora.email.length() < 3) && locadora.id != null) } ? is-invalid" />
+							th:classappend="${(#fields.hasErrors('email') && locadora.id == null) || (locadora.id != null && (#fields.errors('email').size > 1 || 3 > locadora.email.length()) ) } ? is-invalid" />
 						<div class="invalid-feedback">
 							<span th:errors="*{email}"></span>
 						</div>

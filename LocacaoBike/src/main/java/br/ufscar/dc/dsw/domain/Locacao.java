@@ -25,12 +25,12 @@ public class Locacao extends AbstractEntity<Long> {
     @Column(nullable = false, unique = false, length = 256)
     private String horaLocacao;
 
-    @NotBlank(message = "{NotNull.locacao.locadora}")
+    //@NotBlank(message = "{NotNull.locacao.locadora}")
 	@ManyToOne
 	@JoinColumn(name = "locadora_id")
 	private Locadora locadora;	
 
-    @NotBlank()
+    //@NotBlank()
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
