@@ -93,11 +93,12 @@ public class LocadoraController {
 
 		System.out.println(errors);
 		System.out.println(result.getFieldErrorCount()); 
+		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("senha") != null || result.getFieldError("nome") != null || result.getFieldError("cidade") != null) {
+			System.out.println("Falhou");
 
-		if (result.getFieldErrorCount() > errors) {
 			return "locadora/cadastro";
 		}
-
+		
 		locadoraService.salvar(locadora);
 		attr.addFlashAttribute("sucess", "Locadora editada com sucesso.");
 		return "redirect:/locadoras/listar";

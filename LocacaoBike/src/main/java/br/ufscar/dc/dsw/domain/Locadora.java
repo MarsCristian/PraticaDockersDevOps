@@ -35,6 +35,7 @@ public class Locadora extends Usuario {
 	}
 
 	public void setCNPJ(String CNPJ) {
+		System.out.println("set CNPJ");
 		this.CNPJ = CNPJ;
 	}
 
