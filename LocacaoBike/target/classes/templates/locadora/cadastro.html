@@ -54,7 +54,7 @@
 						<label for="telefone" th:text="#{telefone.label}"></label>  
 						<input type="text" class="form-control" id="telefone" placeholder="(__)_____-____"
 							autofocus="autofocus" th:field="*{telefone}"
-							th:classappend="${#fields.hasErrors('telefone')} ? is-invalid"
+							th:classappend="${#fields.hasErrors('telefone') && locadora.id == null} ? is-invalid"
 							data-mask='(00)00000-0000' data-mask-reverse="true" />
 
 
@@ -68,7 +68,7 @@
 						<label for="email" th:text="#{email.label}"></label> 
 						<input type="text" class="form-control" id="email" placeholder="example@example.com"
 							autofocus="autofocus" th:field="*{email}"
-							th:classappend="${#fields.hasErrors('email')} ? is-invalid" />
+							th:classappend="${#fields.hasErrors('email') && locadora.id == null} ? is-invalid" />
 
 						<div class="invalid-feedback">
 							<span th:errors="*{email}"></span>
@@ -80,7 +80,7 @@
 						<input type="text" class="form-control" id="CNPJ" placeholder="__.___.___/____-__"
 							th:readonly="${locadora.id != null}"
 							autofocus="autofocus" th:field="*{CNPJ}"
-							th:classappend="${#fields.hasErrors('CNPJ')} ? is-invalid" 
+							th:classappend="${#fields.hasErrors('CNPJ') && locadora.id == null} ? is-invalid" 
 							data-mask="00.000.000/0000-00" data-mask-reverse="true" />
 						                               
 						<div class="invalid-feedback">

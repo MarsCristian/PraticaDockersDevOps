@@ -11,7 +11,7 @@ public interface ILocadoraDAO extends CrudRepository<Locadora, Long>{
 
 	Locadora findById(long id);
 	
-	Locadora findByCNPJ (String CNPJ);
+	Locadora findByCNPJ(String CNPJ);
 
 	Locadora findByTelefone(String telefone);
 
