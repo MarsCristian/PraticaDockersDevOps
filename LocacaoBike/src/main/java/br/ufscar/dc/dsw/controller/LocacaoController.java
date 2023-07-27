@@ -48,7 +48,7 @@ public class LocacaoController {
 		System.out.println("Entrou no cadastrar");
 		DataAtual = formato.format(new Date());
 		System.out.println(DataAtual);
-		model.addAttribute("DataAtual", DataAtual);
+		model.addAttribute("dataHoraLocacao", DataAtual);
 		return "locacao/cadastro";
 	}
 

@@ -59,11 +59,10 @@
 							<span th:errors="*{locadora}"></span>
 						</div>
 					</div>
-
                     <div class="form-group col-md-6">
 						<label for="dataHoraLocacao">Data de Locação</label> 
-						<input type="date" class="form-control" id="dataHoraLocacao" min = "${DataAtual}"
-							autofocus="autofocus" th:field="*{dataHoraLocacao}"
+						<input type="date" class="form-control" id="dataHoraLocacao" 
+							autofocus="autofocus" th:field="*{dataHoraLocacao}" th:min = "${dataHoraLocacao}"
 							th:classappend="${#fields.hasErrors('dataHoraLocacao')} ? is-invalid" />
 
 						<div class="invalid-feedback">
