@@ -33,17 +33,18 @@
 					<div class="form-group col-md-6">
 						<label for="nome" th:text="#{nome.label}"></label> 
 						<input type="text" class="form-control" id="nome" th:attr="placeholder=#{nome.label}"
-							autofocus="autofocus" th:field="*{Nome}"
-							th:classappend="${#fields.hasErrors('Nome')} ? is-invalid" />
+							autofocus="autofocus" th:field="*{nome}"
+							th:classappend="${#fields.hasErrors('nome')} ? is-invalid" />
 						
 						<div class="invalid-feedback">
-							<span th:errors="*{Nome}"></span>
+							<span th:errors="*{nome}"></span>
 						</div>
 					</div>
 
                     <div class="form-group col-md-6">
 						<label for="CPF" th:text="#{CPF.label}"></label> 
 						<input type="text" class="form-control" id="CPF" placeholder="___.___.___-__"
+							th:readonly="${cliente.id != null}"
 							autofocus="autofocus" th:field="*{CPF}"
 
 							th:classappend="${#fields.hasErrors('CPF') && cliente.id == null} ? is-invalid" 
@@ -70,8 +71,8 @@
 					
 
 					<div class="form-group col-md-6">
-						<label for="nome" th:text="#{nascimento.label}"></label> 
-						<input type="date" class="form-control" id="nome" placeholder="XX/XX/XXXX"
+						<label for="dataNascimento" th:text="#{nascimento.label}"></label> 
+						<input type="date" class="form-control" id="dataNascimento" placeholder="XX/XX/XXXX"
 							autofocus="autofocus" th:field="*{dataNascimento}"
 							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid" 
 							data-mask="00/00/0000"/>
@@ -85,7 +86,7 @@
 						<label for="telefone" th:text="#{telefone.label}"></label> 
 						<input type="text" class="form-control" id="telefone" placeholder="(xx) XXXXX-XXXX"
 							autofocus="autofocus" th:field="*{telefone}"
-							th:classappend="${#fields.hasErrors('telefone') && cliente.id == null} ? is-invalid" 
+							th:classappend="${(#fields.hasErrors('telefone') && cliente.id == null) || (cliente.id != null && (#fields.errors('telefone').size > 1 || 1 > cliente.telefone.length()))} ? is-invalid" 
 							data-mask="(00)00000-0000"/>
 
 						<div class="invalid-feedback">
@@ -97,7 +98,7 @@
 						<label for="email" th:text="#{email.label}"></label> 
 						<input type="text" class="form-control" id="email" th:attr="placeholder=#{pr.email.label}"
 							autofocus="autofocus" th:field="*{email}"
-							th:classappend="${#fields.hasErrors('email') && cliente.id == null} ? is-invalid" />
+							th:classappend="${(#fields.hasErrors('email') && cliente.id == null) || (cliente.id != null && (#fields.errors('email').size > 1 || 3 > cliente.email.length()))} ? is-invalid" />
 						
 						<div class="invalid-feedback">
 							<span th:errors="*{email}"></span>
