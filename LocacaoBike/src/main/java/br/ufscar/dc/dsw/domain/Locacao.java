@@ -17,8 +17,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Locacao extends AbstractEntity<Long> {
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(nullable = false, unique = false, length = 256)
-    private String dataHoraLocacao;
+    @Column(nullable = false, length = 256)
+    private String dataLocacao;
+
+	@DateTimeFormat(pattern = "HH:mm")
+    @Column(nullable = false, length = 256)
+    private String horaLocacao;
 
     //@NotBlank(message = "{NotNull.locacao.locadora}")
 	@ManyToOne
@@ -30,12 +34,21 @@ public class Locacao extends AbstractEntity<Long> {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-    public String getDataHoraLocacao() {
-		return dataHoraLocacao;
+    public String getDataLocacao() {
+		return dataLocacao;
 	}
 
-    public void setDataHoraLocacao(String dataHoraLocacao) {
-		this.dataHoraLocacao = dataHoraLocacao;
+    public void setDataLocacao(String dataLocacao) {
+		this.dataLocacao = dataLocacao;
+	}
+
+	public String getHoraLocacao() {
+		return horaLocacao;
+	}
+
+    public void setHoraLocacao(String horaLocacao) {
+		System.out.println("Entrou no set hora");
+		this.horaLocacao = horaLocacao;
 	}
 
 	public Locadora getLocadora() {

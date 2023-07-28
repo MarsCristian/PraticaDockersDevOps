@@ -67,24 +67,32 @@ public class LocadoraMvcApplication {
             System.out.println("Inseriu c1");
 
             //Declaração de variáveis para a validação das datas
-            SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy HH:mm"); 
-            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm"); 
+            //SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy"); 
+            //SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm"); 
             Date DataAtual = new Date();
-            Date test = formatoData.parse("27/07/2023 17:00");
+            String data = new SimpleDateFormat("dd/MM/yyyy").format(DataAtual);
+            String hora = new SimpleDateFormat("HH:mm").format(DataAtual);
+            //Date test = formatoData.parse("27/07/2023 17:00");
+
+            System.out.println(data);
+            System.out.println(hora);
 
             //Inserindo Locações
             Locacao lo1 = new Locacao();
             lo1.setCliente(c1);
             lo1.setLocadora(l1);
+            lo1.setDataLocacao(data);
+            lo1.setHoraLocacao(hora);
+            locacaoDAO.save(lo1);
 
-            if (test.after(DataAtual)) {
-                  lo1.setDataHoraLocacao("27/07/2023 17:00");
-                  locacaoDAO.save(lo1);
-            }
-            else {
-                  lo1.setDataHoraLocacao("25/10/2023 10:00");
-                  locacaoDAO.save(lo1);
-            }
+            //if (test.after(DataAtual)) {
+            //      lo1.setDataHoraLocacao("27/07/2023 17:00");
+            //      locacaoDAO.save(lo1);
+            //}
+            //else {
+            //      lo1.setDataHoraLocacao("25/10/2023 10:00");
+            //      locacaoDAO.save(lo1);
+            //}
 
             List<Locadora> locadora = locadoraDAO.findAll();
             System.out.println("Printando todas as locadoras adicionadas");

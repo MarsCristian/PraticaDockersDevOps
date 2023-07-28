@@ -32,7 +32,7 @@ import br.ufscar.dc.dsw.service.spec.IClienteService;
 public class LocacaoController {
 
 	String DataAtual;
-	DateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); // yyyy-MM-dd
+	DateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // yyyy-MM-dd
 
 	@Autowired
 	private ILocacaoService locacaoService;
