@@ -71,7 +71,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="nome" th:text="#{nascimento.label}"></label> 
-						<input type="text" class="form-control" id="nome" placeholder="XX/XX/XXXX"
+						<input type="date" class="form-control" id="nome" placeholder="XX/XX/XXXX"
 							autofocus="autofocus" th:field="*{dataNascimento}"
 							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid" 
 							data-mask="00/00/0000"/>

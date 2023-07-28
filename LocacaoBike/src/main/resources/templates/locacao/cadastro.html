@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 </head>
 <body>
+	
 	<section class="layout-content" layout:fragment="corpo">
 
 		<nav class="navbar navbar-expand-md bg-light">
@@ -56,30 +57,28 @@
 							<span th:errors="*{locadora}"></span>
 						</div>
 					</div>
-
                     <div class="form-group col-md-6">
-						<label for="nome" th:text="#{locacao.data.label}"></label> 
-						<input type="text" class="form-control" id="nome" placeholder="XX/XX/XXXX"
-							autofocus="autofocus" th:field="*{dataLocacao}"
-							th:classappend="${#fields.hasErrors('dataLocacao')} ? is-invalid" 
-							data-mask="00/00/0000"/>
+						<label for="dataLocacao" th:text="#{locacao.data.label}">Data de Locação</label> 
+						<input type="date" class="form-control" id="dataLocacao" 
+							autofocus="autofocus" th:field="*{dataLocacao}" th:min = "${dataLocacao}"
+							th:classappend="${#fields.hasErrors('dataLocacao')} ? is-invalid" />
 
 						<div class="invalid-feedback">
-							<span th:errors="*{dataLocacao}"></span>
+							<span th:errors="*{dataHoraLocacao}"></span>
 						</div>
 					</div>
 
-                    <div class="form-group col-md-6">
-						<label for="nome" th:text="#{locacao.tempo.label}"></label> 
-						<input type="text" class="form-control" id="nome" placeholder="XX:00"
-							autofocus="autofocus" th:field="*{horaLocacao}"
-							th:classappend="${#fields.hasErrors('horaLocacao')} ? is-invalid" 
-							data-mask="00:00"/>
+					<div class="form-group col-md-6">
+						<label for="horaLocacao" th:text="#{locacao.tempo.label}">Hora de Locação</label> 
+						<input type="time" class="form-control" id="horaLocacao" 
+							autofocus="autofocus" th:field="*{horaLocacao}" th:min = "${horaLocacao}"
+							th:classappend="${#fields.hasErrors('horaLocacao')} ? is-invalid" />
 
 						<div class="invalid-feedback">
 							<span th:errors="*{horaLocacao}"></span>
 						</div>
 					</div>
+
 				</div>
 
 				<input type="hidden" id="id" th:field="*{id}" />
