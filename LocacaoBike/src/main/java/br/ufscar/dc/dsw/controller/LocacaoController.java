@@ -72,8 +72,13 @@ public class LocacaoController {
 
 	@PostMapping("/salvar")
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
-
 		System.out.println("Entrou no salvar");
+
+		System.out.println(locacao.getDataHoraLocacao());
+
+		locacao.setDataHoraLocacao(locacao.getDataHoraLocacao().replace("T", " "));
+
+		System.out.println(locacao.getDataHoraLocacao());
 
 		if (result.hasErrors() /*|| formato.parse(locacao.getDataHoraLocacao()).after(DataAtual = new Date())*/) {
 			return "locacao/cadastro";
@@ -87,11 +92,12 @@ public class LocacaoController {
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		System.out.println("Entrou no preEditar");
-		DataAtual = formatoData.format(new Date());
-		System.out.println(DataAtual);
-		HoraAtual = formatoHora.format(new Date());
-		System.out.println(HoraAtual);
-		DataHoraAtual = DataAtual + "T" + HoraAtual;
+		//DataAtual = formatoData.format(new Date());
+		//System.out.println(DataAtual);
+		//HoraAtual = formatoHora.format(new Date());
+		//System.out.println(HoraAtual);
+		DataHoraAtual = formatoData.format(new Date());
+		System.out.println(DataHoraAtual);
 		model.addAttribute("dataHoraLocacao", DataHoraAtual);
 		//model.addAttribute("horaLocacao", HoraAtual);
 		return "locacao/cadastro";
@@ -99,6 +105,7 @@ public class LocacaoController {
 
 	@PostMapping("/editar")
 	public String editar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
+
 		System.out.println("Entrou no editar");
 		if (result.hasErrors()) {
 			return "locacao/cadastro";
