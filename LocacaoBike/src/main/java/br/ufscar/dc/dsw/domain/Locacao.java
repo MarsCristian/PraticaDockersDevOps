@@ -9,14 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import br.ufscar.dc.dsw.validation.UniqueDataHora;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> {
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@UniqueDataHora (message = "{Unique.locacao.DataHora}")
     @Column(nullable = false, length = 256)
     private String dataHoraLocacao;
 

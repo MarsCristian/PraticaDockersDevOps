@@ -74,13 +74,10 @@ public class LocacaoController {
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
 		System.out.println("Entrou no salvar");
 
-		System.out.println(locacao.getDataHoraLocacao());
-
 		locacao.setDataHoraLocacao(locacao.getDataHoraLocacao().replace("T", " "));
+		//System.out.println(locacao.getDataHoraLocacao());
 
-		System.out.println(locacao.getDataHoraLocacao());
-
-		if (result.hasErrors() /*|| formato.parse(locacao.getDataHoraLocacao()).after(DataAtual = new Date())*/) {
+		if (result.hasErrors()) {
 			return "locacao/cadastro";
 		}
 

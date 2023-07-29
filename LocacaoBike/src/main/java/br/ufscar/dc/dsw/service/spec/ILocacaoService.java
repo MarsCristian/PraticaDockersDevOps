@@ -8,6 +8,8 @@ public interface ILocacaoService {
 
 	Locacao buscarPorId(Long id);
 
+	Locacao buscarPorDataHora(String dataHoraLocacao);
+
 	List<Locacao> buscarTodos();
 
 	void salvar(Locacao editora);

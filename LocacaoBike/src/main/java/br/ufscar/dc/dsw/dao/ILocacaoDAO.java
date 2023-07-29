@@ -11,6 +11,8 @@ public interface ILocacaoDAO extends CrudRepository<Locacao, Long>{
 
 	Locacao findById(long id);
 
+	Locacao findByDataHora(String dataHoraLocacao);
+
 	List<Locacao> findAll();
 	
 	Locacao save(Locacao locacao);
