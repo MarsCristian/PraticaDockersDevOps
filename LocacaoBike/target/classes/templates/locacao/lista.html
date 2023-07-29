@@ -30,7 +30,6 @@
 					<thead>
 						<tr>
 							<th>#</th>
-
 							<th th:text="#{cliente.CPF.label}"></th>
 							<th th:text="#{locadora.CNPJ.label}"></th>
 							<th th:text="#{locacao.data.label}"></th>
@@ -44,7 +43,8 @@
 							<td th:text="${locacao.id}"></td>
 							<td th:text="${locacao.cliente.CPF}"></td>
 							<td th:text="${locacao.locadora.CNPJ}"></td>
-							<td th:text="${locacao.dataHoraLocacao}"></td>
+							<td th:text="${locacao.dataLocacao}"></td>
+							<td th:text="${locacao.horaLocacao}"></td>
 							<td colspan="2">
 								<a class="btn btn-info btn-sm" th:href="@{/locacoes/editar/{id} (id=${locacao.id}) }"
 									role="button"> 

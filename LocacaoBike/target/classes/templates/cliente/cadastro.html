@@ -74,8 +74,7 @@
 						<label for="dataNascimento" th:text="#{nascimento.label}"></label> 
 						<input type="date" class="form-control" id="dataNascimento" placeholder="XX/XX/XXXX"
 							autofocus="autofocus" th:field="*{dataNascimento}"
-							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid" 
-							data-mask="00/00/0000"/>
+							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid" />
 
 						<div class="invalid-feedback">
 							<span th:errors="*{dataNascimento}"></span>
