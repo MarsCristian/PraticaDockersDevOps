@@ -81,7 +81,7 @@ public class LocadoraMvcApplication {
             Locacao lo1 = new Locacao();
             lo1.setCliente(c1);
             lo1.setLocadora(l1);
-            lo1.setDataHoraLocacao(data + " " + hora);
+            lo1.setDataHora(data + " " + hora);
             //lo1.setHoraLocacao(hora);
             locacaoDAO.save(lo1);
 

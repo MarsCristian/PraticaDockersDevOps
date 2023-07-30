@@ -23,8 +23,9 @@ public class LocacaoService implements ILocacaoService {
 	}
 
 	@Transactional(readOnly = true)
-	public Locacao buscarPorDataHora(String dataHoraLocacao) {
-		return dao.findByDataHora(dataHoraLocacao);
+	public Locacao buscarPorDataHora(String dataHora) {
+		System.out.println("A locacao achada é: " + dao.findByDataHora(dataHora));
+		return dao.findByDataHora(dataHora);
 	}
 
 	@Transactional(readOnly = true)

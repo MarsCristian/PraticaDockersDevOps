@@ -16,13 +16,9 @@ import br.ufscar.dc.dsw.validation.UniqueDataHora;
 @Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> {
 
-	@UniqueDataHora (message = "{Unique.locacao.DataHora}")
+	@UniqueDataHora (message = "{Unique.locadora.dataHora}")
     @Column(nullable = false, length = 256)
-    private String dataHoraLocacao;
-
-	//@DateTimeFormat(pattern = "HH:mm")
-    //@Column(nullable = false, length = 256)
-    //private Date horaLocacao;
+    private String dataHora;
 
     //@NotBlank(message = "{NotNull.locacao.locadora}")
 	@ManyToOne
@@ -34,22 +30,14 @@ public class Locacao extends AbstractEntity<Long> {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-    public String getDataHoraLocacao() {
-		return dataHoraLocacao;
+    public String getDataHora() {
+		return dataHora;
 	}
 
-    public void setDataHoraLocacao(String dataHoraLocacao) {
-		this.dataHoraLocacao = dataHoraLocacao;
+    public void setDataHora(String dataHora) {
+		this.dataHora = dataHora;
+		System.out.println("entrou no set data hora");
 	}
-
-	//public Date getHoraLocacao() {
-	//	return horaLocacao;
-	//}
-//
-    //public void setHoraLocacao(Date horaLocacao) {
-	//	System.out.println("Entrou no set hora");
-	//	this.horaLocacao = horaLocacao;
-	//}
 
 	public Locadora getLocadora() {
 		return locadora;

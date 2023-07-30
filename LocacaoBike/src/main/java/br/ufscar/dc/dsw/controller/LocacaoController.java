@@ -58,7 +58,7 @@ public class LocacaoController {
 		System.out.println(HoraAtual);
 		DataHoraAtual = DataAtual + "T" + HoraAtual;
 		System.out.println(DataHoraAtual);
-		model.addAttribute("dataHoraLocacao", DataHoraAtual);
+		model.addAttribute("dataHora", DataHoraAtual);
 		//model.addAttribute("horaLocacao", HoraAtual);
 		return "locacao/cadastro";
 	}
@@ -74,7 +74,7 @@ public class LocacaoController {
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
 		System.out.println("Entrou no salvar");
 
-		locacao.setDataHoraLocacao(locacao.getDataHoraLocacao().replace("T", " "));
+		locacao.setDataHora(locacao.getDataHora().replace("T", " "));
 		//System.out.println(locacao.getDataHoraLocacao());
 
 		if (result.hasErrors()) {
@@ -95,7 +95,7 @@ public class LocacaoController {
 		//System.out.println(HoraAtual);
 		DataHoraAtual = formatoData.format(new Date());
 		System.out.println(DataHoraAtual);
-		model.addAttribute("dataHoraLocacao", DataHoraAtual);
+		model.addAttribute("dataHora", DataHoraAtual);
 		//model.addAttribute("horaLocacao", HoraAtual);
 		return "locacao/cadastro";
 	}

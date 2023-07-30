@@ -17,8 +17,10 @@ public class UniquedCNPJValidator implements ConstraintValidator<UniquedCNPJ, St
 
 	@Override
 	public boolean isValid(String CNPJ, ConstraintValidatorContext context) {
+		System.out.println("Entrou no validador de CNPJ");
 		if (LocadoraDao != null) {
 			Locadora locadora = LocadoraDao.findByCNPJ(CNPJ);
+			System.out.println(locadora.getCNPJ());
 			return locadora == null;
 		} else {
 			// Durante a execução da classe LocadoraMvcApplication

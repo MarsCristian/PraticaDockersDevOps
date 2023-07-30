@@ -58,13 +58,13 @@
 						</div>
 					</div>
                     <div class="form-group col-md-6">
-						<label for="dataHoraLocacao" th:text="#{locacao.data.label}">Data de Locação</label> 
-						<input type="datetime-local" class="form-control" id="dataHoraLocacao" 
-							autofocus="autofocus" th:field="*{dataHoraLocacao}" th:min = "${dataHoraLocacao}"
-							th:classappend="${#fields.hasErrors('dataHoraLocacao')} ? is-invalid" />
+						<label for="dataHora" th:text="#{locacao.data.label}">Data de Locação</label> 
+						<input type="datetime-local" class="form-control" id="dataHora" 
+							autofocus="autofocus" th:field="*{dataHora}" th:min = "${dataHora}"
+							th:classappend="${#fields.hasErrors('dataHora')} ? is-invalid" />
 	
 						<div class="invalid-feedback">
-							<span th:errors="*{dataHoraLocacao}"></span>
+							<span th:errors="*{dataHora}"></span>
 						</div>
 					</div>
 

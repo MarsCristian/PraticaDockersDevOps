@@ -17,11 +17,19 @@ public class UniqueDataHoraValidator implements ConstraintValidator<UniqueDataHo
 
 	@Override
 	public boolean isValid(String dataHora, ConstraintValidatorContext context) {
+		System.out.println("ENtrou no validador de data e hora");
 		if (LocacaoDao != null) {
 			Locacao locacao = LocacaoDao.findByDataHora(dataHora);
+			System.out.println(locacao);
+			if (locacao != null) {
+				System.out.println("A locacao do find é: ");
+				System.out.println("	" + locacao.getCliente());
+				System.out.println("	" + locacao.getLocadora());
+				System.out.println("	" + locacao.getDataHora());
+			} 
 			return locacao == null;
 		} else {
-			// Durante a execução da classe LocadoraMvcApplication
+			// Durante a execução da classe LocacaoMvcApplication
 			// não há injeção de dependência
 			return true;
 		}
