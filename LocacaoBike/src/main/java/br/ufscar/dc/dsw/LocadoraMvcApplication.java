@@ -70,7 +70,7 @@ public class LocadoraMvcApplication {
             //SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy"); 
             //SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm"); 
             Date DataAtual = new Date();
-            String data = new SimpleDateFormat("dd/MM/yyyy").format(DataAtual);
+            String data = new SimpleDateFormat("dd-MM-yyyy").format(DataAtual);
             String hora = new SimpleDateFormat("HH:mm").format(DataAtual);
             //Date test = formatoData.parse("27/07/2023 17:00");
 
@@ -81,7 +81,7 @@ public class LocadoraMvcApplication {
             Locacao lo1 = new Locacao();
             lo1.setCliente(c1);
             lo1.setLocadora(l1);
-            lo1.setDataHora(data + " " + hora);
+            lo1.setDataHora(data + "T" + hora);
             //lo1.setHoraLocacao(hora);
             locacaoDAO.save(lo1);
 

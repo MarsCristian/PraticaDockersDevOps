@@ -67,6 +67,7 @@ public class LocacaoController {
 	public String listar(ModelMap model) {
 		System.out.println("Entrou no listar");
 		model.addAttribute("locacoes", locacaoService.buscarTodos());
+
 		return "locacao/lista";
 	}
 
@@ -74,7 +75,7 @@ public class LocacaoController {
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
 		System.out.println("Entrou no salvar");
 
-		locacao.setDataHora(locacao.getDataHora().replace("T", " "));
+		//locacao.setDataHora(locacao.getDataHora().replace("T", " "));
 		//System.out.println(locacao.getDataHoraLocacao());
 
 		if (result.hasErrors()) {

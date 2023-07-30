@@ -16,7 +16,7 @@ import br.ufscar.dc.dsw.validation.UniqueDataHora;
 @Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> {
 
-	@UniqueDataHora (message = "{Unique.locadora.dataHora}")
+	@UniqueDataHora (message = "{Unique.locacao.dataHora}")
     @Column(nullable = false, length = 256)
     private String dataHora;
 
