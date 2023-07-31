@@ -9,20 +9,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import br.ufscar.dc.dsw.validation.UniqueDataHora;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> {
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@UniqueDataHora (message = "{Unique.locacao.dataHora}")
     @Column(nullable = false, length = 256)
-    private String dataLocacao;
-
-	@DateTimeFormat(pattern = "HH:mm")
-    @Column(nullable = false, length = 256)
-    private String horaLocacao;
+    private String dataHora;
 
     //@NotBlank(message = "{NotNull.locacao.locadora}")
 	@ManyToOne
@@ -34,21 +30,13 @@ public class Locacao extends AbstractEntity<Long> {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-    public String getDataLocacao() {
-		return dataLocacao;
+    public String getDataHora() {
+		return dataHora;
 	}
 
-    public void setDataLocacao(String dataLocacao) {
-		this.dataLocacao = dataLocacao;
-	}
-
-	public String getHoraLocacao() {
-		return horaLocacao;
-	}
-
-    public void setHoraLocacao(String horaLocacao) {
-		System.out.println("Entrou no set hora");
-		this.horaLocacao = horaLocacao;
+    public void setDataHora(String dataHora) {
+		this.dataHora = dataHora;
+		System.out.println("entrou no set data hora");
 	}
 
 	public Locadora getLocadora() {

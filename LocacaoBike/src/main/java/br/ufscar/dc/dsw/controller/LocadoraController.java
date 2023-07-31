@@ -79,12 +79,13 @@ public class LocadoraController {
 
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		System.out.println("Pre editar locadora");
 		model.addAttribute("locadora", locadoraService.buscarPorId(id));
 		return "locadora/cadastro";
 	}
 
 	@GetMapping("/procurarPorCNPJ/{CNPJ}")
-	public String buscarPorCNPJ(@PathVariable("CNPJ") String CNPJ, ModelMap model) {
+	public String buscarPorCNPJ(@PathVariable("CNPJ") String CNPJ, ModelMap model) {  
 		model.addAttribute("locadora", locadoraService.buscarPorCNPJ(CNPJ));
 		return "locadora/cadastro"; //Verificar pra onde isso retornaria de fato
 	}

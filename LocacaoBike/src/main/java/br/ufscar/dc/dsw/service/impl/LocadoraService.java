@@ -24,6 +24,7 @@ public class LocadoraService implements ILocadoraService {
 
     @Transactional(readOnly = true)
 	public Locadora buscarPorCNPJ(String CNPJ) {
+		System.out.println("Entrou no buscar por CNPJ");
 		return dao.findByCNPJ(CNPJ);
 	}
 

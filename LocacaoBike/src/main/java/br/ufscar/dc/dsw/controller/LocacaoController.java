@@ -34,7 +34,10 @@ import br.ufscar.dc.dsw.service.spec.ILocadoraService;
 public class LocacaoController {
 
 	String DataAtual;
-	DateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // yyyy-MM-dd
+	String HoraAtual;
+	String DataHoraAtual;
+	DateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
+	DateFormat formatoHora = new SimpleDateFormat("HH:mm"); 
 
 	@Autowired
 	private ILocacaoService locacaoService;
@@ -49,25 +52,40 @@ public class LocacaoController {
 	@GetMapping("/cadastrar")
 	public String cadastrar(Locacao locacao, ModelMap model) {
 		System.out.println("Entrou no cadastrar");
-		DataAtual = formato.format(new Date());
+		DataAtual = formatoData.format(new Date());
 		System.out.println(DataAtual);
-		model.addAttribute("dataHoraLocacao", DataAtual);
+		HoraAtual = formatoHora.format(new Date());
+		System.out.println(HoraAtual);
+		DataHoraAtual = DataAtual + "T" + HoraAtual;
+		System.out.println(DataHoraAtual);
+		model.addAttribute("dataHora", DataHoraAtual);
+		//model.addAttribute("horaLocacao", HoraAtual);
 		return "locacao/cadastro";
 	}
 
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		System.out.println("Entrou no listar");
-		model.addAttribute("locacoes", locacaoService.buscarTodos());
+		String dataHoraAuxiliar = null;
+		List<Locacao> locacoes = locacaoService.buscarTodos();
+		for (Locacao locacao : locacoes) {
+			dataHoraAuxiliar = locacao.getDataHora().replace("T", " ");
+			locacao.setDataHora(dataHoraAuxiliar);
+		}
+
+		model.addAttribute("locacoes", locacoes);
+
 		return "locacao/lista";
 	}
 
 	@PostMapping("/salvar")
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
-
 		System.out.println("Entrou no salvar");
 
-		if (result.hasErrors() /*|| formato.parse(locacao.getDataHoraLocacao()).after(DataAtual = new Date())*/) {
+		//locacao.setDataHora(locacao.getDataHora().replace("T", " "));
+		//System.out.println(locacao.getDataHoraLocacao());
+
+		if (result.hasErrors()) {
 			return "locacao/cadastro";
 		}
 		locacaoService.salvar(locacao);
@@ -78,16 +96,22 @@ public class LocacaoController {
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		System.out.println("Entrou no preEditar");
-		model.addAttribute("locacao", locacaoService.buscarPorId(id));
-		DataAtual = formato.format(new Date());
-		model.addAttribute("DataAtual", DataAtual);
+		model.addAttribute("locacao", locacaoService.buscarPorId(id));		
 		return "locacao/cadastro";
 	}
 
 	@PostMapping("/editar")
 	public String editar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
 		System.out.println("Entrou no editar");
-		if (result.hasErrors()) {
+
+		Integer errors = 0;
+		if (result.getFieldError("dataHora") != null)
+			errors += 1;
+		System.out.println(errors);
+		System.out.println(result.getFieldErrorCount()); 
+		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("dataHora") != null) {
+			System.out.println("Falhou");
+
 			return "locacao/cadastro";
 		}
 

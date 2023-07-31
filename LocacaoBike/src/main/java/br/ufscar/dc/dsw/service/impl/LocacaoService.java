@@ -23,6 +23,12 @@ public class LocacaoService implements ILocacaoService {
 	}
 
 	@Transactional(readOnly = true)
+	public Locacao buscarPorDataHora(String dataHora) {
+		System.out.println("A locacao achada é: " + dao.findByDataHora(dataHora));
+		return dao.findByDataHora(dataHora);
+	}
+
+	@Transactional(readOnly = true)
 	public List<Locacao> buscarTodos() {
 		return dao.findAll();
 	}
