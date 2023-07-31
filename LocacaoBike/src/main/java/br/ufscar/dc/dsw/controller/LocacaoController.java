@@ -70,7 +70,6 @@ public class LocacaoController {
 		if (result.hasErrors() /*|| formato.parse(locacao.getDataHoraLocacao()).after(DataAtual = new Date())*/) {
 			return "locacao/cadastro";
 		}
-
 		locacaoService.salvar(locacao);
 		attr.addFlashAttribute("sucess", "Locação inserida com sucesso");
 		return "redirect:/locacoes/listar";

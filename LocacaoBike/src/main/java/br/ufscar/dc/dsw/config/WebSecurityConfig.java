@@ -47,12 +47,14 @@ import br.ufscar.dc.dsw.security.UsuarioDetailsServiceImpl;
    			.authorizeRequests()
    				.antMatchers("/", "/index", "/error").permitAll()
    				.antMatchers("/login/**", "/js/**").permitAll()
-                   .antMatchers("/css/**", "/image/**", "/webjars/**").permitAll()
-   				.antMatchers("/admin/**").hasRole("Admin")
-                   .antMatchers("/user/**").hasRole("Usuario")
-                   .antMatchers("/loc/**").hasRole("Locadora")
+                   .antMatchers("/css/**", "/image/**", "/webjars/**", "/locadoras/listar").permitAll()
+                .antMatchers("/locacoes/cadastrar").hasAnyRole("Cliente", "Admin")
+                .antMatchers("/locadoras/cadastrar", "/clientes/**").hasRole("Admin")
 
-   				.anyRequest().authenticated()
+                .antMatchers("/locacoes/listar").hasAnyRole("Locadora", "Admin", "Cliente")
+
+
+                .anyRequest().authenticated()
    				.and()
    			.formLogin()
    				.loginPage("/login")

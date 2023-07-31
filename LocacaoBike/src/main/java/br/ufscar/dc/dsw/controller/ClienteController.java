@@ -8,6 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,10 @@ public class ClienteController {
 	@Autowired
 	private ILocacaoService locacaoService;
 
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+
+
 	@GetMapping("/cadastrar")
 	public String cadastrar(Cliente cliente) {
 		return "cliente/cadastro";
@@ -51,6 +56,7 @@ public class ClienteController {
 			return "cliente/cadastro";
 		}
 
+		cliente.setSenha(encoder.encode(cliente.getSenha()));
 		clienteService.salvar(cliente);
 		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso");
 		return "redirect:/clientes/listar";
@@ -84,7 +90,7 @@ public class ClienteController {
 
 			return "locadora/cadastro";
 		}
-
+		System.out.println("pasosu aqui");
 		clienteService.salvar(cliente);
 		attr.addFlashAttribute("sucess", "Cliente editado com sucesso.");
 		return "redirect:/clientes/listar";

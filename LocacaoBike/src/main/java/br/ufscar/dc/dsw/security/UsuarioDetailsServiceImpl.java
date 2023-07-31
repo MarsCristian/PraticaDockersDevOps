@@ -17,7 +17,10 @@ public class UsuarioDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         Usuario usuario = dao.getUserByUsername(username);
-         
+        System.out.println("Loading Username"); 
+        System.out.println(usuario.getPapel());
+        
+
         if (usuario == null) {
             throw new UsernameNotFoundException("Could not find user");
         }

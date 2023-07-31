@@ -14,7 +14,7 @@
 						<span th:text="#{locadoras.listar.label}"></span>
 					</li>
 				</ul>
-				<a class="btn btn-primary btn-md" th:href="@{/locadoras/cadastrar}" role="button"> 
+				<a class="btn btn-primary btn-md" th:href="@{/locadoras/cadastrar}" role="button" sec:authorize="hasRole('ROLE_Admin')"> 
 					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
 					<span th:text="#{locadora.nova.label}"></span>
 				</a>
@@ -67,7 +67,7 @@
 						<th th:text="#{telefone.label}"></th>
 						<th th:text="#{email.label}"></th>
 						<th th:text="#{cidade.label}"></th>
-						<th th:text="#{acao.label}"></th>
+						<th th:text="#{acao.label}" sec:authorize="hasRole('ROLE_Admin')"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -78,9 +78,9 @@
 						<td th:text="${Locadora.telefone}"></td>
 						<td th:text="${Locadora.email}"></td>
 						<td th:text="${Locadora.cidade}"></td>
-						<td colspan="2">
+						<td colspan="2" sec:authorize="hasRole('ROLE_Admin')">
 							<a class="btn btn-info btn-sm" th:href="@{/locadoras/editar/{id} (id=${Locadora.id}) }"
-								role="button"> 
+								role="button" > 
 								<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>
 							</a>
 							<button th:id="${#strings.concat('btn_locadoras/excluirPorId/', Locadora.Id)}" 
