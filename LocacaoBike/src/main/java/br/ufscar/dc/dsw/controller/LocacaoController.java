@@ -10,6 +10,9 @@ import java.text.DateFormat;
 
 import javax.validation.Valid;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -67,7 +70,14 @@ public class LocacaoController {
 		model.addAttribute("usuarioService", usuarioService);
 		model.addAttribute("usuarioTeste", usuario);
 
-		//model.addAttribute("horaLocacao", HoraAtual);
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String nome = null;
+		if (principal instanceof UserDetails) {
+			nome = ((UserDetails)principal).getUsername();
+		}
+		System.out.println(nome);
+
+
 		return "locacao/cadastro";
 	}
 
