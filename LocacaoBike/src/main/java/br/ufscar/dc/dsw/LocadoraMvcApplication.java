@@ -100,10 +100,6 @@ public class LocadoraMvcApplication {
             admin.setTelefone("(16)12457-1458");
             usuarioDAO.save(admin);
 
-            //Declarações para a locação
-
-            System.out.println(data);
-            System.out.println(hora);
 
             //Inserindo Locações
             Locacao lo1 = new Locacao();
@@ -115,7 +111,7 @@ public class LocadoraMvcApplication {
             Locacao lo2 = new Locacao();
             lo2.setCliente(c1);
             lo2.setLocadora(l1);
-            lo2.setDataHora(2023-08-04T16:00);
+            lo2.setDataHora("2023-08-04T16:00");
             locacaoDAO.save(lo2);
 
             List<Locadora> locadora = locadoraDAO.findAll();
