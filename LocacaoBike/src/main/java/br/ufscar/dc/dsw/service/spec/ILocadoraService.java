@@ -10,10 +10,6 @@ public interface ILocadoraService {
 
 	Locadora buscarPorCNPJ(String CNPJ);
 
-	Locadora buscarPorTelefone(String telefone);
-
-	Locadora buscarPorEmail(String email);
-
 	List<Locadora> buscarTodos();
 
 	void salvar(Locadora editora);

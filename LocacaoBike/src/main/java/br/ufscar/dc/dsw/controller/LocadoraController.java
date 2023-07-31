@@ -79,12 +79,6 @@ public class LocadoraController {
 		return "locadora/cadastro"; //Verificar pra onde isso retornaria de fato
 	}
 
-	@GetMapping("/procurarPorTelefone/{telefone}")
-	public String buscarPorTelefone(@PathVariable("telefone") String telefone, ModelMap model) {
-		model.addAttribute("locadora", locadoraService.buscarPorTelefone(telefone));
-		return "locadora/cadastro"; //Verificar pra onde isso retornaria de fato
-	}
-
 	@PostMapping("/editar")
 	public String editar(@Valid Locadora locadora, BindingResult result, RedirectAttributes attr) {
 		System.out.println("Entrou no /editar");

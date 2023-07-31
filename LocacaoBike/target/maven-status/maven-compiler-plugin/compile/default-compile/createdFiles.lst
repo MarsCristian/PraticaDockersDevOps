@@ -1,4 +1,5 @@
 br/ufscar/dc/dsw/service/impl/ClienteService.class
+br/ufscar/dc/dsw/config/WebSecurityConfig.class
 br/ufscar/dc/dsw/validation/UniquedCPF.class
 br/ufscar/dc/dsw/service/spec/IUsuarioService.class
 br/ufscar/dc/dsw/validation/UniquedCNPJValidator.class
@@ -8,6 +9,7 @@ br/ufscar/dc/dsw/controller/ClienteController.class
 br/ufscar/dc/dsw/validation/UniquedTelefoneValidator.class
 br/ufscar/dc/dsw/service/spec/ILocacaoService.class
 br/ufscar/dc/dsw/LocadoraMvcApplication.class
+br/ufscar/dc/dsw/security/UsuarioDetailsServiceImpl.class
 br/ufscar/dc/dsw/domain/Cliente.class
 br/ufscar/dc/dsw/validation/UniquedCPFValidator.class
 br/ufscar/dc/dsw/domain/AbstractEntity.class
@@ -22,6 +24,7 @@ br/ufscar/dc/dsw/controller/HomeController.class
 br/ufscar/dc/dsw/dao/IUsuarioDAO.class
 br/ufscar/dc/dsw/dao/IClienteDAO.class
 br/ufscar/dc/dsw/controller/LocacaoController.class
+br/ufscar/dc/dsw/security/UsuarioDetails.class
 br/ufscar/dc/dsw/service/spec/ILocadoraService.class
 br/ufscar/dc/dsw/validation/UniquedCNPJ.class
 br/ufscar/dc/dsw/domain/Usuario.class

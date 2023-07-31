@@ -13,6 +13,10 @@ public interface IUsuarioDAO extends CrudRepository<Usuario, Long>{
 
 	Usuario findById(long id);
 
+	Usuario findByTelefone(String telefone);
+
+	Usuario findByEmail(String email);
+
 	List<Usuario> findAll();
 	
 	Usuario save(Usuario usuario);
