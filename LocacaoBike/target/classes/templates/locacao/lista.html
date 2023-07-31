@@ -38,7 +38,7 @@
 						</tr>
 					</thead>
 					<tbody>			
-						<tr th:each="locacao : ${locacoes}" th:if="${(cliente == locacao.cliente) || cliente.getPapel() == 'ROLE_Admin'}">
+						<tr th:each="locacao : ${locacoes}" th:if="${(cliente == locacao.cliente) || cliente.getPapel() == 'ROLE_Admin' || (cliente == locacao.locadora)}">
 							<td th:text="${locacao.id}"></td>
 							<td th:text="${locacao.cliente.CPF}"></td>
 							<td th:text="${locacao.locadora.CNPJ}"></td>

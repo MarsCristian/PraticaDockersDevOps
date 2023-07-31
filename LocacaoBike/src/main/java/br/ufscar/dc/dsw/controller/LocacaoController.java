@@ -100,8 +100,8 @@ public class LocacaoController {
 			nome = ((UserDetails)principal).getUsername();
 		}
 
+		System.out.println("achou o usuario: " + nome);
 		Usuario teste = usuarioService.buscarPorNome(nome);
-
 		model.addAttribute("cliente", teste);
 
 		return "locacao/lista";
