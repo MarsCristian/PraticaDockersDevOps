@@ -1,8 +1,6 @@
 package br.ufscar.dc.dsw;
 
 import java.util.List;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -36,9 +34,9 @@ public class LocadoraMvcApplication {
             
             // Inserindo Locadoras
             Locadora l1 = new Locadora();
-            l1.setNome("Conserta Bike");
+            l1.setNome("Conserta Bike RP");
             l1.setEmail("conserta_bike@gmail.com");
-            l1.setSenha(encoder.encode("ConsertaBike123"));
+            l1.setSenha(encoder.encode("123"));
             l1.setPapel("ROLE_Locadora");
             l1.setCNPJ("55.789.390/0008-99");
             l1.setCidade("Ribeirão Preto");
@@ -47,15 +45,26 @@ public class LocadoraMvcApplication {
             System.out.println("Inseriu l1");
 
             Locadora l2 = new Locadora();
-            l2.setNome("Conserta Bike");
+            l2.setNome("Conserta Bike Sanca");
             l2.setEmail("conserta_bikeRP@gmail.com");
-            l2.setSenha(encoder.encode("ConsertaBike123"));
+            l2.setSenha(encoder.encode("123"));
             l2.setPapel("ROLE_Locadora");
             l2.setCNPJ("71.150.470/0001-40");
             l2.setCidade("São Carlos");
             l2.setTelefone("(16)12345-1235");
             locadoraDAO.save(l2);
             System.out.println("Inseriu l1");
+
+            Locadora l3 = new Locadora();
+            l3.setNome("Oi Bike");
+            l3.setEmail("oi_bike@gmail.com");
+            l3.setSenha(encoder.encode("123"));
+            l3.setPapel("ROLE_Locadora");
+            l3.setCNPJ("55.789.390/0008-00");
+            l3.setCidade("São Carlos");
+            l3.setTelefone("(16)12345-4321");
+            locadoraDAO.save(l3);
+            System.out.println("Inseriu l3");
 
             //Inserindo Clientes
             Cliente c1 = new Cliente();
@@ -66,25 +75,32 @@ public class LocadoraMvcApplication {
             c1.setCPF("446.023.648-61");
             c1.setSexo("Masculino");
             c1.setTelefone("(16)12346-1235");
-            c1.setDataNascimento("08/09/1999");
+            c1.setDataNascimento("1999-09-08");
             clienteDAO.save(c1);
             System.out.println("Inseriu c1");
 
+            Cliente c2 = new Cliente();
+            c2.setNome("Rafael");
+            c2.setEmail("rafael@rafael.com");
+            c2.setSenha(encoder.encode("123"));
+            c2.setPapel("ROLE_Cliente");
+            c2.setCPF("446.023.648-00");
+            c2.setSexo("Masculino");
+            c2.setTelefone("(16)12346-4567");
+            c2.setDataNascimento("2002-03-27");
+            clienteDAO.save(c2);
+            System.out.println("Inseriu c2");
+
+            //Inserindo Administradores
             Usuario admin = new Usuario();
-            admin.setEmail("admin");
+            admin.setEmail("admin@gmail.com");
             admin.setPapel("ROLE_Admin");
             admin.setSenha(encoder.encode("admin"));
             admin.setNome("admin");
             admin.setTelefone("(16)12457-1458");
             usuarioDAO.save(admin);
 
-            //Declaração de variáveis para a validação das datas
-            //SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy"); 
-            //SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm"); 
-            Date DataAtual = new Date();
-            String data = new SimpleDateFormat("yyyy-MM-dd").format(DataAtual);
-            String hora = new SimpleDateFormat("HH:00").format(DataAtual);
-            //Date test = formatoData.parse("27/07/2023 17:00");
+            //Declarações para a locação
 
             System.out.println(data);
             System.out.println(hora);
@@ -93,18 +109,14 @@ public class LocadoraMvcApplication {
             Locacao lo1 = new Locacao();
             lo1.setCliente(c1);
             lo1.setLocadora(l1);
-            lo1.setDataHora(data + "T" + hora);
-            //lo1.setHoraLocacao(hora);
+            lo1.setDataHora("2023-08-02T14:00");
             locacaoDAO.save(lo1);
 
-            //if (test.after(DataAtual)) {
-            //      lo1.setDataHoraLocacao("27/07/2023 17:00");
-            //      locacaoDAO.save(lo1);
-            //}
-            //else {
-            //      lo1.setDataHoraLocacao("25/10/2023 10:00");
-            //      locacaoDAO.save(lo1);
-            //}
+            Locacao lo2 = new Locacao();
+            lo2.setCliente(c1);
+            lo2.setLocadora(l1);
+            lo2.setDataHora(2023-08-04T16:00);
+            locacaoDAO.save(lo2);
 
             List<Locadora> locadora = locadoraDAO.findAll();
             System.out.println("Printando todas as locadoras adicionadas");
