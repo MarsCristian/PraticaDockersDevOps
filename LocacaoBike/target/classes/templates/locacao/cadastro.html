@@ -31,12 +31,15 @@
 				<div class="form-row">
 
                     <div class="form-group col-md-6">
-						<label for="cliente" th:text="#{cliente.label}"></label> 
+						<label for="cliente" th:text="#{cliente.label}" ></label> 
 						<select id="cliente" class="form-control" th:field="*{cliente}"
 							th:classappend="${#fields.hasErrors('cliente')} ? is-invalid">
 							<option value="" th:text="#{selecione.label}"></option>
 							<option th:each="cliente : ${clientes}" th:value="${cliente.id}"
-								th:text="${cliente.nome}"></option>
+								th:text="${cliente.nome}" sec:authorize="hasRole('ROLE_Admin')"></option>
+								
+							<option th:value="3"
+								sec:authorize="hasRole('ROLE_Cliente')" sec:authentication="name"></option>
 						</select>
 
 						<div class="invalid-feedback">

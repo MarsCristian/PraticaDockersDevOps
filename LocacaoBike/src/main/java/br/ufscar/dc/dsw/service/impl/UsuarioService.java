@@ -23,6 +23,11 @@ public class UsuarioService implements IUsuarioService {
 	}
 
 	@Transactional(readOnly = true)
+	public Usuario buscarPorNome(String nome) {
+		return dao.findByNome(nome);
+	}
+
+	@Transactional(readOnly = true)
 	public Usuario buscarPorTelefone(String telefone) {
 		return dao.findByTelefone(telefone);
 	}

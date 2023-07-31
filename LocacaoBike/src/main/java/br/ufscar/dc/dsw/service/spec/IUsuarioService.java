@@ -12,6 +12,8 @@ public interface IUsuarioService {
 
 	Usuario buscarPorEmail(String email);
 
+	Usuario buscarPorNome(String nome);
+
 	List<Usuario> buscarTodos();
 
 	void salvar(Usuario editora);
