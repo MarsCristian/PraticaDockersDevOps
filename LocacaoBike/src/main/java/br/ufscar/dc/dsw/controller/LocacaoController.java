@@ -37,7 +37,7 @@ public class LocacaoController {
 	String HoraAtual;
 	String DataHoraAtual;
 	DateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
-	DateFormat formatoHora = new SimpleDateFormat("HH:mm"); 
+	DateFormat formatoHora = new SimpleDateFormat("HH"); 
 
 	@Autowired
 	private ILocacaoService locacaoService;
@@ -56,7 +56,7 @@ public class LocacaoController {
 		System.out.println(DataAtual);
 		HoraAtual = formatoHora.format(new Date());
 		System.out.println(HoraAtual);
-		DataHoraAtual = DataAtual + "T" + HoraAtual;
+		DataHoraAtual = DataAtual + "T" + HoraAtual + ":00";
 		System.out.println(DataHoraAtual);
 		model.addAttribute("dataHora", DataHoraAtual);
 		//model.addAttribute("horaLocacao", HoraAtual);
@@ -82,10 +82,10 @@ public class LocacaoController {
 	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
 		System.out.println("Entrou no salvar");
 
-		//locacao.setDataHora(locacao.getDataHora().replace("T", " "));
-		//System.out.println(locacao.getDataHoraLocacao());
+		System.out.println("Erros: " + result.getErrorCount());
 
 		if (result.hasErrors()) {
+			System.out.println("Entrou no if do salvar locacao");
 			return "locacao/cadastro";
 		}
 		locacaoService.salvar(locacao);

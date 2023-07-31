@@ -7,8 +7,10 @@ br/ufscar/dc/dsw/service/impl/LocacaoService.class
 br/ufscar/dc/dsw/service/spec/IClienteService.class
 br/ufscar/dc/dsw/controller/ClienteController.class
 br/ufscar/dc/dsw/validation/UniquedTelefoneValidator.class
+br/ufscar/dc/dsw/validation/UniqueLocacaoValidator.class
 br/ufscar/dc/dsw/validation/UniqueDataHora.class
 br/ufscar/dc/dsw/service/spec/ILocacaoService.class
+br/ufscar/dc/dsw/validation/UniqueLocacao.class
 br/ufscar/dc/dsw/LocadoraMvcApplication.class
 br/ufscar/dc/dsw/security/UsuarioDetailsServiceImpl.class
 br/ufscar/dc/dsw/domain/Cliente.class

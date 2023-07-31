@@ -60,7 +60,7 @@
                     <div class="form-group col-md-6">
 						<label for="dataHora" th:text="#{locacao.data.label}">Data de Locação</label> 
 						<input type="datetime-local" class="form-control" id="dataHora" 
-							autofocus="autofocus" th:field="*{dataHora}" th:min = "${dataHora}"
+							autofocus="autofocus" th:field="*{dataHora}" th:min = "${dataHora}" required step="3600"
 							th:classappend="${#fields.hasErrors('dataHora')} ? is-invalid" />
 	
 						<div class="invalid-feedback">

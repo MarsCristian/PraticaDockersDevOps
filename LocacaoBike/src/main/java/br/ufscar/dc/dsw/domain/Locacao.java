@@ -10,13 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import br.ufscar.dc.dsw.validation.UniqueDataHora;
+import br.ufscar.dc.dsw.validation.UniqueLocacao;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Locacao")
+@UniqueLocacao (message = "{Unique.locacao.clientedatahora}")
 public class Locacao extends AbstractEntity<Long> {
 
-	@UniqueDataHora (message = "{Unique.locacao.dataHora}")
+	//@UniqueDataHora (message = "{Unique.locacao.dataHora}")
     @Column(nullable = false, length = 256)
     private String dataHora;
 
