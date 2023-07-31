@@ -82,7 +82,7 @@
 
                     <div class="form-group col-md-6">
 						<label for="telefone" th:text="#{telefone.label}"></label> 
-						<input type="text" class="form-control" id="telefone" placeholder="(xx) XXXXX-XXXX"
+						<input type="text" class="form-control" id="telefone" placeholder="(XX)XXXXX-XXXX"
 							autofocus="autofocus" th:field="*{telefone}"
 							th:classappend="${(#fields.hasErrors('telefone') && cliente.id == null) || (cliente.id != null && (#fields.errors('telefone').size > 1 || 1 > cliente.telefone.length()))} ? is-invalid" 
 							data-mask="(00)00000-0000"/>
@@ -115,13 +115,13 @@
 					</div>
 
 					
-
 					<div class="form-group col-md-6">
 						<label for="papel" th:text="#{papel.label}"></label>
-						<input type="text" class="form-control" id="papel"
-							   th:field="*{papel}" th:classappend="${#fields.hasErrors('papel')} ? is-invalid"
-							   autofocus="autofocus" />
-					
+						<select id="papel" class="form-control" th:field="*{papel}" th:classappend="${#fields.hasErrors('papel')} ? is-invalid" autofocus="autofocus">
+							<option value="" th:text="#{selecione.label}"></option>
+							<option value="Cliente" th:text="#{cliente.label}"></option>
+							<option value="Admin" >Admin</option>
+						</select>
 						<div class="invalid-feedback">
 							<span th:errors="*{papel}"></span>
 						</div>

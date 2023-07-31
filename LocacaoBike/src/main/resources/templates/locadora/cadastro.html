@@ -53,7 +53,7 @@
 					<div class="form-group col-md-6">
 
 						<label for="telefone" th:text="#{telefone.label}"></label>  
-						<input type="text" class="form-control" id="telefone" placeholder="(__)_____-____"
+						<input type="text" class="form-control" id="telefone" placeholder="(XX)XXXXX-XXXX"
 							autofocus="autofocus" th:field="*{telefone}"
 							th:classappend="${(#fields.hasErrors('telefone') && locadora.id == null) || (locadora.id != null && (#fields.errors('telefone').size > 1 || 1 > locadora.telefone.length())) } ? is-invalid"
 							data-mask='(00)00000-0000'/>
@@ -118,7 +118,7 @@
 
 		<script th:inline="javascript">
 			document.addEventListener('DOMContentLoaded', function() {
-				document.getElementById('papel').value = 'ROLE_Locadora';
+				document.getElementById('papel').value = 'Locadora';
 			});
 		</script>
 	</section>
