@@ -36,10 +36,7 @@
 							th:classappend="${#fields.hasErrors('cliente')} ? is-invalid">
 							<option value="" th:text="#{selecione.label}"></option>
 							<option th:each="cliente : ${clientes}" th:value="${cliente.id}"
-								th:text="${cliente.nome}" sec:authorize="hasRole('ROLE_Admin')"></option>
-								
-							<option th:value="3"
-								sec:authorize="hasRole('ROLE_Cliente')" sec:authentication="name"></option>
+								th:text="${cliente.nome}" sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_Cliente')"></option>
 						</select>
 
 						<div class="invalid-feedback">
