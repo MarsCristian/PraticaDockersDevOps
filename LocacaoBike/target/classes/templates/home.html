@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html layout:decorate="~{layout}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity"
+	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
 </head>
@@ -7,7 +10,22 @@
 	<section class="layout-content" layout:fragment="corpo">
 
 		<div class="container" style="text-align: center;">
-			<h1 th:text="#{title.label}"></h1>
+			<h1>
+				<span th:text="#{home.hello}"></span>
+				<span th:inline="text">[[${#httpServletRequest.remoteUser}]]!</span>
+			</h1>
+			<p><a th:href="@{/}"><span th:text="#{home.message.1}"></a></p>
+   		
+				<div sec:authorize="hasRole('Admin')">
+					<p><a th:href="@{/admin}"><span th:text="#{home.message.2}"></a></p>
+				</div>
+		
+				<div sec:authorize="hasRole('Usuario')">
+					<p><a th:href="@{/user}"><span th:text="#{home.message.3}"></a></p>
+				</div>
+				<div sec:authorize="hasRole('Locadora')">
+					<p><a th:href="@{/loc}"><span th:text="#{title.label}"></a></p>
+				</div>
 			<img alt="" th:src="@{/image/bicicleta.png}" style="width:500px;">
 		</div>
 
