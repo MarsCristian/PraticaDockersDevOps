@@ -31,6 +31,7 @@ import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
+import br.ufscar.dc.dsw.service.spec.IUsuarioService;
 
 import br.ufscar.dc.dsw.service.spec.IClienteService;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
@@ -55,7 +56,7 @@ public class LocacaoController {
 	private IClienteService clienteService;
 
 	@Autowired
-	private IUsuarioDAO usuarioService;
+	private IUsuarioService usuarioService;
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Locacao locacao, ModelMap model, @AuthenticationPrincipal Usuario usuario) {
@@ -67,7 +68,6 @@ public class LocacaoController {
 		DataHoraAtual = DataAtual + "T" + HoraAtual + ":00";
 		System.out.println(DataHoraAtual);
 		model.addAttribute("dataHora", DataHoraAtual);
-		model.addAttribute("usuarioService", usuarioService);
 		model.addAttribute("usuarioTeste", usuario);
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -75,9 +75,10 @@ public class LocacaoController {
 		if (principal instanceof UserDetails) {
 			nome = ((UserDetails)principal).getUsername();
 		}
-		System.out.println(nome);
 
+		Usuario teste = usuarioService.buscarPorNome(nome);
 
+		model.addAttribute("idCliente", teste.getId());
 		return "locacao/cadastro";
 	}
 

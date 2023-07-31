@@ -28,7 +28,7 @@ public class UsuarioDetails implements UserDetails {
     public String getPassword() {
         return usuario.getSenha();
     }
- 
+
     @Override
     public String getUsername() {
         return usuario.getNome();
