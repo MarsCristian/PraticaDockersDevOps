@@ -87,7 +87,7 @@ public class ClienteController {
 		if (result.getFieldError("telefone") != null)
 			errors += 1;
 
-		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("senha") != null || result.getFieldError("nome") != null || result.getFieldError("sexo") != null || result.getFieldError("dataNascimento") != null) {
+		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("senha") != null || result.getFieldError("nome") != null || result.getFieldError("sexo") != null || result.getFieldError("dataNascimento") != null || result.getFieldError("papel") != null) {
 			System.out.println("Falhou");
 
 			return "locadora/cadastro";
