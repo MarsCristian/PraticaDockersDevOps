@@ -94,6 +94,16 @@ public class LocacaoController {
 
 		model.addAttribute("locacoes", locacoes);
 
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String nome = null;
+		if (principal instanceof UserDetails) {
+			nome = ((UserDetails)principal).getUsername();
+		}
+
+		Usuario teste = usuarioService.buscarPorNome(nome);
+
+		model.addAttribute("cliente", teste);
+
 		return "locacao/lista";
 	}
 
