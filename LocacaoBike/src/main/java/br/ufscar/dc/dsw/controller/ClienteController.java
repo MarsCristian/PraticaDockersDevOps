@@ -57,6 +57,8 @@ public class ClienteController {
 		}
 
 		cliente.setSenha(encoder.encode(cliente.getSenha()));
+		if(cliente.getPapel().equals("Cliente") || cliente.getPapel().equals("Admin"))
+            cliente.setPapel("ROLE_" + cliente.getPapel());
 		clienteService.salvar(cliente);
 		attr.addFlashAttribute("sucess", "Cliente inserido com sucesso");
 		return "redirect:/clientes/listar";
