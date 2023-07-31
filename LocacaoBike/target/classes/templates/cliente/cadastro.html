@@ -46,9 +46,8 @@
 						<input type="text" class="form-control" id="CPF" placeholder="___.___.___-__"
 							th:readonly="${cliente.id != null}"
 							autofocus="autofocus" th:field="*{CPF}"
-
 							th:classappend="${#fields.hasErrors('CPF') && cliente.id == null} ? is-invalid" 
-							data-mask="000.000.000-00" data-mask-reverse="true"/>
+							data-mask="000.000.000-00"/>
 
 						
 						<div class="invalid-feedback">
@@ -72,7 +71,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="dataNascimento" th:text="#{nascimento.label}"></label> 
-						<input type="date" class="form-control" id="dataNascimento" placeholder="XX/XX/XXXX"
+						<input type="date" class="form-control" id="dataNascimento"
 							autofocus="autofocus" th:field="*{dataNascimento}"
 							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid" />
 
@@ -83,7 +82,7 @@
 
                     <div class="form-group col-md-6">
 						<label for="telefone" th:text="#{telefone.label}"></label> 
-						<input type="text" class="form-control" id="telefone" placeholder="(xx) XXXXX-XXXX"
+						<input type="text" class="form-control" id="telefone" placeholder="(XX)XXXXX-XXXX"
 							autofocus="autofocus" th:field="*{telefone}"
 							th:classappend="${(#fields.hasErrors('telefone') && cliente.id == null) || (cliente.id != null && (#fields.errors('telefone').size > 1 || 1 > cliente.telefone.length()))} ? is-invalid" 
 							data-mask="(00)00000-0000"/>
@@ -116,33 +115,23 @@
 					</div>
 
 					
-
 					<div class="form-group col-md-6">
 						<label for="papel" th:text="#{papel.label}"></label>
-						<input type="text" class="form-control" id="papel" readonly
-							   th:field="*{papel}" th:classappend="${#fields.hasErrors('papel')} ? is-invalid"
-							   autofocus="autofocus" />
-					
+						<select id="papel" class="form-control" th:field="*{papel}" th:classappend="${#fields.hasErrors('papel')} ? is-invalid" autofocus="autofocus">
+							<option value="" th:text="#{selecione.label}"></option>
+							<option value="Cliente" th:text="#{cliente.label}"></option>
+							<option value="Admin" >Admin</option>
+						</select>
 						<div class="invalid-feedback">
 							<span th:errors="*{papel}"></span>
 						</div>
 					</div>
-					
-					
-					
-
 
 				</div>
 				<input type="hidden" id="id" th:field="*{id}" />
 				<button type="submit" class="btn btn-primary btn-sm" th:text="#{salvar.label}"></button>
 			</form>
 		</div>
-
-		<script th:inline="javascript">
-			document.addEventListener('DOMContentLoaded', function() {
-				document.getElementById('papel').value = 'Cliente';
-			});
-		</script>
 	</section>
 </body>
 </html>

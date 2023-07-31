@@ -88,7 +88,6 @@ public class LocacaoController {
 		if (result.hasErrors()) {
 			return "locacao/cadastro";
 		}
-
 		locacaoService.salvar(locacao);
 		attr.addFlashAttribute("sucess", "Locação inserida com sucesso");
 		return "redirect:/locacoes/listar";

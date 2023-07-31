@@ -33,7 +33,8 @@
 							<th th:text="#{cliente.CPF.label}"></th>
 							<th th:text="#{locadora.CNPJ.label}"></th>
 							<th th:text="#{locacao.data.label}"></th>
-							<th th:text="#{acao.label}"></th>
+							<th th:text="#{locacao.tempo.label}"></th>
+							<th th:text="#{acao.label}" sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_Cliente')"></th>
 
 						</tr>
 					</thead>
@@ -42,8 +43,8 @@
 							<td th:text="${locacao.id}"></td>
 							<td th:text="${locacao.cliente.CPF}"></td>
 							<td th:text="${locacao.locadora.CNPJ}"></td>
-							<td th:text="${locacao.dataHora}"></td>
-							<td colspan="2">
+							<td th:text="${locacao.dataHoraLocacao}"></td>
+							<td colspan="2" sec:authorize="hasAnyRole('ROLE_Admin', 'ROLE_Cliente')">
 								<a class="btn btn-info btn-sm" th:href="@{/locacoes/editar/{id} (id=${locacao.id}) }"
 									role="button"> 
 									<span class="oi oi-brush" title="Editar" aria-hidden="true"> </span>

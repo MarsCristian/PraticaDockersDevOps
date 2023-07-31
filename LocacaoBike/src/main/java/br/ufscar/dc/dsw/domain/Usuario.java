@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -14,8 +16,9 @@ import br.ufscar.dc.dsw.validation.UniquedTelefone;
 import br.ufscar.dc.dsw.validation.UniquedEmail;
 
 @SuppressWarnings("serial")
-@MappedSuperclass
+@Entity
 @Table(name = "Usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario extends AbstractEntity<Long> {
 
   @NotBlank(message = "{NotNull.usuario.nome}")

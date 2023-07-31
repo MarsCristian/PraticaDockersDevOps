@@ -8,6 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,10 @@ public class LocadoraController {
 	@Autowired
 	private ILocacaoService locacaoService;
 
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
+
 	@GetMapping("/cadastrar")
 	public String cadastrar(Locadora locadora) {
 		System.out.println("Cadastrando nova Locadora");
@@ -55,8 +60,18 @@ public class LocadoraController {
 			System.out.println("Entrou no if");
 			return "locadora/cadastro";
 		}
+		System.out.println("ROLE_".concat(locadora.getPapel()));
 
-		System.out.println("Passou do if");
+		System.out.println(locadora.getPapel().equals("Locadora"));
+
+		if(locadora.getPapel().equals("Locadora"))
+		{
+			System.out.println("Arrumando Role");
+            locadora.setPapel("ROLE_".concat(locadora.getPapel()));
+		}
+		locadora.setSenha(encoder.encode(locadora.getSenha()));
+		System.out.println(locadora.getPapel());
+		
 		locadoraService.salvar(locadora);
 		attr.addFlashAttribute("sucess", "Locadora inserida com sucesso");
 		return "redirect:/locadoras/listar";
@@ -72,12 +87,6 @@ public class LocadoraController {
 	@GetMapping("/procurarPorCNPJ/{CNPJ}")
 	public String buscarPorCNPJ(@PathVariable("CNPJ") String CNPJ, ModelMap model) {  
 		model.addAttribute("locadora", locadoraService.buscarPorCNPJ(CNPJ));
-		return "locadora/cadastro"; //Verificar pra onde isso retornaria de fato
-	}
-
-	@GetMapping("/procurarPorTelefone/{telefone}")
-	public String buscarPorTelefone(@PathVariable("telefone") String telefone, ModelMap model) {
-		model.addAttribute("locadora", locadoraService.buscarPorTelefone(telefone));
 		return "locadora/cadastro"; //Verificar pra onde isso retornaria de fato
 	}
 
