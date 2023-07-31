@@ -66,7 +66,14 @@ public class LocacaoController {
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		System.out.println("Entrou no listar");
-		model.addAttribute("locacoes", locacaoService.buscarTodos());
+		String dataHoraAuxiliar = null;
+		List<Locacao> locacoes = locacaoService.buscarTodos();
+		for (Locacao locacao : locacoes) {
+			dataHoraAuxiliar = locacao.getDataHora().replace("T", " ");
+			locacao.setDataHora(dataHoraAuxiliar);
+		}
+
+		model.addAttribute("locacoes", locacoes);
 
 		return "locacao/lista";
 	}
@@ -90,22 +97,22 @@ public class LocacaoController {
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		System.out.println("Entrou no preEditar");
-		//DataAtual = formatoData.format(new Date());
-		//System.out.println(DataAtual);
-		//HoraAtual = formatoHora.format(new Date());
-		//System.out.println(HoraAtual);
-		DataHoraAtual = formatoData.format(new Date());
-		System.out.println(DataHoraAtual);
-		model.addAttribute("dataHora", DataHoraAtual);
-		//model.addAttribute("horaLocacao", HoraAtual);
+		model.addAttribute("locacao", locacaoService.buscarPorId(id));		
 		return "locacao/cadastro";
 	}
 
 	@PostMapping("/editar")
 	public String editar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
-
 		System.out.println("Entrou no editar");
-		if (result.hasErrors()) {
+
+		Integer errors = 0;
+		if (result.getFieldError("dataHora") != null)
+			errors += 1;
+		System.out.println(errors);
+		System.out.println(result.getFieldErrorCount()); 
+		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("dataHora") != null) {
+			System.out.println("Falhou");
+
 			return "locacao/cadastro";
 		}
 
