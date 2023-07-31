@@ -60,8 +60,18 @@ public class LocadoraController {
 			System.out.println("Entrou no if");
 			return "locadora/cadastro";
 		}
-		System.out.println("Passou do if");
+		System.out.println("ROLE_".concat(locadora.getPapel()));
+
+		System.out.println(locadora.getPapel().equals("Locadora"));
+
+		if(locadora.getPapel().equals("Locadora"))
+		{
+			System.out.println("Arrumando Role");
+            locadora.setPapel("ROLE_".concat(locadora.getPapel()));
+		}
 		locadora.setSenha(encoder.encode(locadora.getSenha()));
+		System.out.println(locadora.getPapel());
+		
 		locadoraService.salvar(locadora);
 		attr.addFlashAttribute("sucess", "Locadora inserida com sucesso");
 		return "redirect:/locadoras/listar";
