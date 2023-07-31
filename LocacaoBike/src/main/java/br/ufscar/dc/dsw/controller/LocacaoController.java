@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -22,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufscar.dc.dsw.domain.Locacao;
+import br.ufscar.dc.dsw.dao.IUsuarioDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Locadora;
+import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 
 import br.ufscar.dc.dsw.service.spec.IClienteService;
@@ -48,9 +51,11 @@ public class LocacaoController {
 	@Autowired
 	private IClienteService clienteService;
 
+	@Autowired
+	private IUsuarioDAO usuarioService;
 
 	@GetMapping("/cadastrar")
-	public String cadastrar(Locacao locacao, ModelMap model) {
+	public String cadastrar(Locacao locacao, ModelMap model, @AuthenticationPrincipal Usuario usuario) {
 		System.out.println("Entrou no cadastrar");
 		DataAtual = formatoData.format(new Date());
 		System.out.println(DataAtual);
@@ -59,6 +64,9 @@ public class LocacaoController {
 		DataHoraAtual = DataAtual + "T" + HoraAtual + ":00";
 		System.out.println(DataHoraAtual);
 		model.addAttribute("dataHora", DataHoraAtual);
+		model.addAttribute("usuarioService", usuarioService);
+		model.addAttribute("usuarioTeste", usuario);
+
 		//model.addAttribute("horaLocacao", HoraAtual);
 		return "locacao/cadastro";
 	}
@@ -131,6 +139,12 @@ public class LocacaoController {
 	@ModelAttribute("clientes")
 	public List<Cliente> listaClientes() {
 		return clienteService.buscarTodos();
+	}
+
+	@ModelAttribute("clienteAtual")
+	public Cliente listaClienteAtual(@AuthenticationPrincipal Cliente usuario) {
+		System.out.println("usuario" + usuario);
+		return usuario;
 	}
 
 	@ModelAttribute("locadoras")

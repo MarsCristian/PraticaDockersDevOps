@@ -94,7 +94,7 @@
 
                     <div class="form-group col-md-6">
 						<label for="email" th:text="#{email.label}"></label> 
-						<input type="text" class="form-control" id="email" th:attr="placeholder=#{pr.email.label}"
+						<input type="email" class="form-control" id="email" th:attr="placeholder=#{pr.email.label}"
 							autofocus="autofocus" th:field="*{email}"
 							th:classappend="${(#fields.hasErrors('email') && cliente.id == null) || (cliente.id != null && (#fields.errors('email').size > 1 || 3 > cliente.email.length()))} ? is-invalid" />
 						

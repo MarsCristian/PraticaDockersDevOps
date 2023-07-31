@@ -28,6 +28,7 @@ public class LocacaoService implements ILocacaoService {
 		return dao.findByDataHora(dataHora);
 	}
 
+
 	@Transactional(readOnly = true)
 	public List<Locacao> buscarTodos() {
 		return dao.findAll();

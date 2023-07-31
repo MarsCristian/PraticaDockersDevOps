@@ -16,6 +16,8 @@ public interface IUsuarioDAO extends CrudRepository<Usuario, Long>{
 	Usuario findByTelefone(String telefone);
 
 	Usuario findByEmail(String email);
+	
+	Usuario findByNome(String name);
 
 	List<Usuario> findAll();
 	

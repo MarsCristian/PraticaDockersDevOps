@@ -108,7 +108,12 @@ public class LocadoraController {
 
 			return "locadora/cadastro";
 		}
-		
+		locadora.setSenha(encoder.encode(locadora.getSenha()));
+		if(locadora.getPapel().equals("Locadora"))
+		{
+			System.out.println("Arrumando Role");
+            locadora.setPapel("ROLE_".concat(locadora.getPapel()));
+		}
 		locadoraService.salvar(locadora);
 		attr.addFlashAttribute("sucess", "Locadora editada com sucesso.");
 		return "redirect:/locadoras/listar";
