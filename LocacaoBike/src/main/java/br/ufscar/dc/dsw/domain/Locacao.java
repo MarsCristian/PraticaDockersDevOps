@@ -1,28 +1,27 @@
 package br.ufscar.dc.dsw.domain;
 
 import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Locacao")
 public class Locacao extends AbstractEntity<Long> {
 
-    @NotBlank(message = "{NotNull.locacao.dataLocacao}")
-    @Size(min = 3, max = 256)
-    @Column(nullable = false, unique = false, length = 256)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(nullable = false, length = 256)
     private String dataLocacao;
 
-    @NotBlank(message = "{NotNull.locacao.horaLocacao}")
-    @Size(min = 3, max = 256)
-    @Column(nullable = false, unique = false, length = 256)
+	@DateTimeFormat(pattern = "HH:mm")
+    @Column(nullable = false, length = 256)
     private String horaLocacao;
 
     //@NotBlank(message = "{NotNull.locacao.locadora}")
@@ -43,11 +42,12 @@ public class Locacao extends AbstractEntity<Long> {
 		this.dataLocacao = dataLocacao;
 	}
 
-    public String getHoraLocacao() {
+	public String getHoraLocacao() {
 		return horaLocacao;
 	}
 
     public void setHoraLocacao(String horaLocacao) {
+		System.out.println("Entrou no set hora");
 		this.horaLocacao = horaLocacao;
 	}
 
