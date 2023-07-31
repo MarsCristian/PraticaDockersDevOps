@@ -47,7 +47,7 @@
 							th:readonly="${cliente.id != null}"
 							autofocus="autofocus" th:field="*{CPF}"
 							th:classappend="${#fields.hasErrors('CPF') && cliente.id == null} ? is-invalid" 
-							data-mask="000.000.000-00" data-mask-reverse="true"/>
+							data-mask="000.000.000-00"/>
 
 						
 						<div class="invalid-feedback">
@@ -71,10 +71,10 @@
 
 					<div class="form-group col-md-6">
 						<label for="dataNascimento" th:text="#{nascimento.label}"></label> 
-						<input type="date" class="form-control" id="dataNascimento" placeholder="XX/XX/XXXX"
+						<input type="date" class="form-control" id="dataNascimento"
 							autofocus="autofocus" th:field="*{dataNascimento}"
 							th:classappend="${#fields.hasErrors('dataNascimento')} ? is-invalid" 
-							data-mask="00/00/0000"/>
+							/>
 
 						<div class="invalid-feedback">
 							<span th:errors="*{dataNascimento}"></span>
@@ -119,7 +119,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="papel" th:text="#{papel.label}"></label>
-						<input type="text" class="form-control" id="papel" readonly
+						<input type="text" class="form-control" id="papel"
 							   th:field="*{papel}" th:classappend="${#fields.hasErrors('papel')} ? is-invalid"
 							   autofocus="autofocus" />
 					
@@ -127,22 +127,12 @@
 							<span th:errors="*{papel}"></span>
 						</div>
 					</div>
-					
-					
-					
-
 
 				</div>
 				<input type="hidden" id="id" th:field="*{id}" />
 				<button type="submit" class="btn btn-primary btn-sm" th:text="#{salvar.label}"></button>
 			</form>
 		</div>
-
-		<script th:inline="javascript">
-			document.addEventListener('DOMContentLoaded', function() {
-				document.getElementById('papel').value = 'Cliente';
-			});
-		</script>
 	</section>
 </body>
 </html>
