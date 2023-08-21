@@ -26,7 +26,7 @@ import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 
 @Controller
 @RequestMapping("/locadoras")
-public class LocadoraController {
+public class LocadoraRestController {
 
 	@Autowired
 	private ILocadoraService locadoraService;
