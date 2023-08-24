@@ -18,5 +18,8 @@ public interface ILocadoraService {
 
 	void excluirPorCNPJ(String CNPJ);
 
+	List<Locadora> buscarPorCidade(String cidade);
+
+
 	//boolean locadoraTemLocacao(Long id);
 }
