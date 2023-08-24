@@ -7,15 +7,22 @@ import java.util.List;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
+import java.io.IOException;
+import java.util.Map;
+
 
 import javax.validation.Valid;
+import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,14 +36,14 @@ import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 import br.ufscar.dc.dsw.service.spec.IUsuarioService;
-
-import br.ufscar.dc.dsw.service.spec.IClienteService;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
+import br.ufscar.dc.dsw.service.spec.IClienteService;
 
 import org.springframework.web.bind.annotation.RestController;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/locacoes")
 public class LocacaoRestController {
 
 	String DataAtual;
@@ -54,122 +61,65 @@ public class LocacaoRestController {
 	@Autowired
 	private IClienteService clienteService;
 
-	@Autowired
-	private IUsuarioService usuarioService;
 
-	@GetMapping("/cadastrar")
-	public String cadastrar(Locacao locacao, ModelMap model, @AuthenticationPrincipal Usuario usuario) {
-		System.out.println("Entrou no cadastrar");
-		DataAtual = formatoData.format(new Date());
-		System.out.println(DataAtual);
-		HoraAtual = formatoHora.format(new Date());
-		System.out.println(HoraAtual);
-		DataHoraAtual = DataAtual + "T" + HoraAtual + ":00";
-		System.out.println(DataHoraAtual);
-		model.addAttribute("dataHora", DataHoraAtual);
-		model.addAttribute("usuarioTeste", usuario);
+    private boolean isJSONValid(String jsonInString) {
+		try {
+			return new ObjectMapper().readTree(jsonInString) != null;
+		} catch (IOException e) {
+			return false;
+		}
+	}
 
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String nome = null;
-		if (principal instanceof UserDetails) {
-			nome = ((UserDetails)principal).getUsername();
+	@GetMapping(path = "/locacoes")
+	public ResponseEntity<List<Locacao>> lista() {
+		List<Locacao> lista = locacaoService.buscarTodos();
+		System.out.println("Entrou no lista");
+
+		if (lista.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(lista);
+	}
+
+	@GetMapping(path = "/locacoes/{id}")
+	public ResponseEntity<Locacao> listaLocacao(@PathVariable("id") Long id) {
+		Locacao locacao = locacaoService.buscarPorId(id);
+		System.out.println("Entrou no listaLocacao");
+
+		if(locacao == null) {
+			return ResponseEntity.notFound().build();
 		}
 
-		Usuario teste = usuarioService.buscarPorNome(nome);
-
-		model.addAttribute("idCliente", teste.getId());
-		return "locacao/cadastro";
+		return ResponseEntity.ok(locacao);
 	}
 
-	@GetMapping("/listar")
-	public String listar(ModelMap model) {
-		System.out.println("Entrou no listar");
-		String dataHoraAuxiliar = null;
-		List<Locacao> locacoes = locacaoService.buscarTodos();
-		for (Locacao locacao : locacoes) {
-			dataHoraAuxiliar = locacao.getDataHora().replace("T", " ");
-			locacao.setDataHora(dataHoraAuxiliar);
+	
+	@GetMapping(path = "/locacoes/clientes/{id}")
+	public ResponseEntity<List<Locacao>> listaLocacoesCliente(@PathVariable("id") Long id) {
+		Cliente cliente = clienteService.buscarPorId(id);
+		List<Locacao> locacoes = locacaoService.buscarTodosPorCliente(cliente);
+		System.out.println("Entrou no listaLocacoesCliente");
+
+		if(locacoes.isEmpty()) {
+			return ResponseEntity.notFound().build();
 		}
 
-		model.addAttribute("locacoes", locacoes);
+		return ResponseEntity.ok(locacoes);
+	}
 
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String nome = null;
-		if (principal instanceof UserDetails) {
-			nome = ((UserDetails)principal).getUsername();
+	@GetMapping(path = "/locacoes/locadoras/{id}")
+	public ResponseEntity<List<Locacao>> listaLocacoesLocadora(@PathVariable("id") Long id) {
+		Locadora locadora = locadoraService.buscarPorId(id);
+		List<Locacao> locacoes = locacaoService.buscarTodosPorLocadora(locadora);
+		System.out.println("Entrou no listaLocacoesLocadora");
+
+		if(locacoes.isEmpty()) {
+			return ResponseEntity.notFound().build();
 		}
 
-		System.out.println("achou o usuario: " + nome);
-		Usuario teste = usuarioService.buscarPorNome(nome);
-		model.addAttribute("cliente", teste);
-
-		return "locacao/lista";
+		return ResponseEntity.ok(locacoes);
 	}
 
-	@PostMapping("/salvar")
-	public String salvar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
-		System.out.println("Entrou no salvar");
-
-		System.out.println("Erros: " + result.getErrorCount());
-
-		if (result.hasErrors()) {
-			System.out.println("Entrou no if do salvar locacao");
-			return "locacao/cadastro";
-		}
-		locacaoService.salvar(locacao);
-		attr.addFlashAttribute("sucess", "Locação inserida com sucesso");
-		return "redirect:/locacoes/listar";
-	}
-
-	@GetMapping("/editar/{id}")
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		System.out.println("Entrou no preEditar");
-		model.addAttribute("locacao", locacaoService.buscarPorId(id));		
-		return "locacao/cadastro";
-	}
-
-	@PostMapping("/editar")
-	public String editar(@Valid Locacao locacao, BindingResult result, RedirectAttributes attr) {
-		System.out.println("Entrou no editar");
-
-		Integer errors = 0;
-		if (result.getFieldError("dataHora") != null)
-			errors += 1;
-		System.out.println(errors);
-		System.out.println(result.getFieldErrorCount()); 
-		if (result.getFieldErrorCount() > errors+1 || result.getFieldError("dataHora") != null) {
-			System.out.println("Falhou");
-
-			return "locacao/cadastro";
-		}
-
-		locacaoService.salvar(locacao);
-		attr.addFlashAttribute("sucess", "Locação editada com sucesso.");
-		return "redirect:/locacoes/listar";
-	}
-
-	@GetMapping("/excluirPorId/{id}") 
-	public String excluirPorId(@PathVariable("id") Long id, RedirectAttributes attr) {
-		System.out.println("Entrou no excluirPorId");
-		locacaoService.excluirPorId(id);
-		attr.addFlashAttribute("sucess", "Locação excluída com sucesso.");
-		return "redirect:/locacoes/listar";
-	}
-
-	@ModelAttribute("clientes")
-	public List<Cliente> listaClientes() {
-		return clienteService.buscarTodos();
-	}
-
-	@ModelAttribute("clienteAtual")
-	public Cliente listaClienteAtual(@AuthenticationPrincipal Cliente usuario) {
-		System.out.println("usuario" + usuario);
-		return usuario;
-	}
-
-	@ModelAttribute("locadoras")
-	public List<Locadora> listaLocadoras() {
-		return locadoraService.buscarTodos();
-	}
+	
 }
 

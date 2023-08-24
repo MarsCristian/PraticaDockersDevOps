@@ -1,5 +1,6 @@
-package br.ufscar.dc.dsw.controller;
+/* 
 
+package br.ufscar.dc.dsw.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,3 +36,5 @@ public class ErrorViewController implements ErrorViewResolver {
 	}
 
 }
+
+*/
