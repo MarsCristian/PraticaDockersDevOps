@@ -45,8 +45,13 @@ public class LocadoraService implements ILocadoraService {
 		dao.deleteByCNPJ(CNPJ);
 	}
 
-	//@Transactional(readOnly = true)
-	//public boolean locadoraTemLocacao(Long id) {
-	//	return !dao.findById(id.longValue()).getLocacoes().isEmpty(); 
-	//}
+	@Transactional(readOnly = true)
+	public List<Locadora> buscarPorCidade(String cidade) {
+		return dao.findAllByCidade(cidade);
+	}
+
+	@Transactional(readOnly = true)
+	public boolean locadoraTemLocacao(Long id) {
+	return !dao.findById(id.longValue()).getLocacoes().isEmpty(); 
+	}
 }
