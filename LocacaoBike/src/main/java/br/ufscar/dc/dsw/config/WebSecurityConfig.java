@@ -47,10 +47,10 @@ import br.ufscar.dc.dsw.security.UsuarioDetailsServiceImpl;
    			.authorizeRequests()
    				.antMatchers("/", "/index", "/error").permitAll()
    				.antMatchers("/login/**", "/js/**").permitAll()
-                   .antMatchers("/css/**", "/image/**", "/webjars/**", "/locadoras/listar").permitAll()
-                .antMatchers("/locacoes/cadastrar").hasAnyRole("Cliente", "Admin")
-                .antMatchers("/locadoras/cadastrar", "/clientes/**").hasRole("Admin")
-
+				.antMatchers("/clientes", "/locadoras", "/locacoes").permitAll()
+                .antMatchers("/css/**", "/image/**", "/webjars/**", "/locadoras/{\\d+}", "clientes/{\\d+}").permitAll()
+                .antMatchers("/locadoras/cidades/{\\w+}").permitAll()
+                .antMatchers("/locacoes/{\\d+}", "/locacoes/clientes/{\\d+}", "/locacoes/locadoras/{\\d+}").permitAll()
                 .antMatchers("/locacoes/listar").hasAnyRole("Locadora", "Admin", "Cliente")
 
 

@@ -56,25 +56,25 @@ public class ClienteRestController {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	private void parse(List<Locacao> locacoes, JSONObject json) {
+	// @SuppressWarnings("unchecked")
+	// private void parse(List<Locacao> locacoes, JSONObject json) {
 
-		Map<String, Object> map = (Map<String, Object>) json.get("locacao");
-		for (Locacao locacao : locacoes) 
-		{
-			Object id = map.get("id");
-			if (id instanceof Integer) {
-				locacao.setId(((Integer) id).longValue());
-			} else {
-				locacao.setId(((Long) id));
-			}
+	// 	Map<String, Object> map = (Map<String, Object>) json.get("locacao");
+	// 	for (Locacao locacao : locacoes) 
+	// 	{
+	// 		Object id = map.get("id");
+	// 		if (id instanceof Integer) {
+	// 			locacao.setId(((Integer) id).longValue());
+	// 		} else {
+	// 			locacao.setId(((Long) id));
+	// 		}
 
-			locacao.setCliente((Cliente) map.get("cliente"));
-			locacao.setDataHora((String) map.get("dataHora"));
-			locacao.setLocadora((Locadora) map.get("locadora"));
-		}
+	// 		locacao.setCliente((Cliente) map.get("cliente"));
+	// 		locacao.setDataHora((String) map.get("dataHora"));
+	// 		locacao.setLocadora((Locadora) map.get("locadora"));
+	// 	}
 
-	}
+	// }
 
     private void parse(Cliente cliente, JSONObject json) {
 
@@ -97,12 +97,7 @@ public class ClienteRestController {
 		cliente.setSexo((String) json.get("sexo"));
         cliente.setTelefone((String) json.get("telefone"));
 		cliente.setSenha(encoder.encode((String) json.get("senha")));
-
-		List<Locacao> locacao;
-		//parse(locacao, json);
 		cliente.setLocacoes(null);
-
-
 	}
 
     @PostMapping(path = "/clientes")
@@ -143,7 +138,7 @@ public class ClienteRestController {
 		}
 	}
 
-	/*
+	//*
     @DeleteMapping(path = "/editoras/{id}")
 	public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
 
@@ -161,7 +156,7 @@ public class ClienteRestController {
 	}
 	//*/
 
-
+	// Não retornar Locações
     @GetMapping(path = "/clientes")
 	public ResponseEntity<List<Cliente>> lista() {
 		List<Cliente> lista = clienteService.buscarTodos();

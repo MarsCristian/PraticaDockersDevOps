@@ -17,4 +17,7 @@ public interface IClienteService {
 	void excluirPorId(Long id);
 
     void excluirPorCPF(String CPF);
+
+	boolean clienteTemLocacao(Long id);
+
 }

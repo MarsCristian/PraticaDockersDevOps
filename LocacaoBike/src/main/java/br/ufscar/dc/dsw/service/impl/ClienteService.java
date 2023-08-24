@@ -44,5 +44,9 @@ public class ClienteService implements IClienteService {
 		dao.deleteByCPF(CPF);
 	}
 
+	@Transactional(readOnly = true)
+	public boolean clienteTemLocacao(Long id){
+		return !dao.findById(id.longValue()).getLocacoes().isEmpty();
+	}
 
 }

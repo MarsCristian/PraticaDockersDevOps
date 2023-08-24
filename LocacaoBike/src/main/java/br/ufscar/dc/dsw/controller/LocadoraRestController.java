@@ -4,41 +4,25 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.util.List;
-import java.util.Map;
-import java.math.BigDecimal;
-import java.io.IOException;
-
-import javax.persistence.PostRemove;
-import javax.validation.Valid;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.SurpressWarnings;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufscar.dc.dsw.domain.Locadora;
-import br.ufscar.dc.dsw.domain.Locacao;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
-import br.ufscar.dc.dsw.service.spec.ILocacaoService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @CrossOrigin
 @RestController
@@ -47,8 +31,6 @@ public class LocadoraRestController {
 	@Autowired
 	private ILocadoraService locadoraService;
 
-	@Autowired
-	private ILocacaoService locacaoService;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -82,7 +64,7 @@ public class LocadoraRestController {
 			locadora.setTelefone((String) json.get("telefone"));
 			locadora.setSenha((String) json.get("senha"));
 			locadora.setPapel((String) json.get("papel"));
-
+			locadora.setLocacoes(null);
 		}
 
 	@PostMapping(path = "/locadoras")
@@ -107,6 +89,7 @@ public class LocadoraRestController {
 
 	}
 
+	// Não retornar Locações
 	@GetMapping(path = "/locadoras")
 	public ResponseEntity<List<Locadora>> lista() {
 		List<Locadora> lista = locadoraService.buscarTodos();
