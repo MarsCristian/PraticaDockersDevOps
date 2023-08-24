@@ -7,15 +7,22 @@ import java.util.List;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
+import java.io.IOException;
+import java.util.Map;
+
 
 import javax.validation.Valid;
+import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,14 +36,14 @@ import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 import br.ufscar.dc.dsw.service.spec.IUsuarioService;
-
-import br.ufscar.dc.dsw.service.spec.IClienteService;
 import br.ufscar.dc.dsw.service.spec.ILocadoraService;
+import br.ufscar.dc.dsw.service.spec.IClienteService;
 
 import org.springframework.web.bind.annotation.RestController;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/locacoes")
 public class LocacaoRestController {
 
 	String DataAtual;
@@ -56,6 +63,28 @@ public class LocacaoRestController {
 
 	@Autowired
 	private IUsuarioService usuarioService;
+
+
+    private boolean isJSONValid(String jsonInString) {
+		try {
+			return new ObjectMapper().readTree(jsonInString) != null;
+		} catch (IOException e) {
+			return false;
+		}
+	}
+	
+	@GetMapping(path = "/locacoes/clientes/{id}")
+	public ResponseEntity<List<Locacao>> listaLocacoesCliente(@PathVariable("id") Long id) {
+		Cliente cliente = clienteService.buscarPorId(id);
+		List<Locacao> locacoes = locacaoService.buscarTodosPorCliente(cliente);
+		System.out.println("Entrou no listaLocacoesCliente");
+
+		if(locacoes.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		return ResponseEntity.ok(locacoes);
+	}
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Locacao locacao, ModelMap model, @AuthenticationPrincipal Usuario usuario) {

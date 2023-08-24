@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.ufscar.dc.dsw.dao.ILocacaoDAO;
 import br.ufscar.dc.dsw.domain.Locacao;
+import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Locadora;
 import br.ufscar.dc.dsw.service.spec.ILocacaoService;
 
 @Service
@@ -40,5 +42,13 @@ public class LocacaoService implements ILocacaoService {
 
 	public void excluirPorId(Long id) {
 		dao.deleteById(id);
+	}
+
+	public List<Locacao> buscarTodosPorCliente(Cliente cliente) {
+		return dao.findByIdByCliente(cliente);
+	}
+
+	public List<Locacao> buscarTodosPorLocadora(Locadora locadora) {
+		return dao.findByIdByLocadora(locadora);
 	}
 }
