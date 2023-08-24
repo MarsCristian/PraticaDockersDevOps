@@ -97,7 +97,7 @@ public class ClienteRestController {
 		cliente.setSexo((String) json.get("sexo"));
         cliente.setTelefone((String) json.get("telefone"));
 		cliente.setSenha(encoder.encode((String) json.get("senha")));
-		cliente.setLocacoes(null);
+		//cliente.setLocacoes(null);
 	}
 
     @PostMapping(path = "/clientes")
@@ -139,14 +139,17 @@ public class ClienteRestController {
 	}
 
 	//*
-    @DeleteMapping(path = "/editoras/{id}")
+    @DeleteMapping(path = "/clientes/{id}")
 	public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
+		System.out.println("ENtrou no delete");
 
 		Cliente cliente = clienteService.buscarPorId(id);
+
 		if (cliente == null) {
 			return ResponseEntity.notFound().build();
 		} else {
 			if (clienteService.clienteTemLocacao(id)) {
+				System.out.println("ENtrou no forbidden");
 				return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
 			} else {
 				clienteService.excluirPorId(id);

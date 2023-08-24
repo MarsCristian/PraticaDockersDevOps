@@ -1,0 +1,21 @@
+{
+    "nome": "Grats",
+    "telefone": "(16)16166-1616",
+    "email": "tgrats@gmail.com",
+    "senha": "123456",
+    "papel": "Cliente",
+    "sexo": "Masculino",
+    "dataNascimento": "1999-09-09",
+    "cpf": "161.161.161-16"
+}
+
+{
+    "nome": "Grats Inc.",
+    "telefone": "(16)18166-1616",
+    "email": "gratsInc@gmail.com",
+    "senha": "123456",
+    "cidade": "Sampa",
+    "cnpj": "16.176.161/0001-16"
+}
+
+

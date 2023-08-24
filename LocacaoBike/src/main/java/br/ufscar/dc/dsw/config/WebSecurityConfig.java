@@ -44,15 +44,22 @@ import br.ufscar.dc.dsw.security.UsuarioDetailsServiceImpl;
    	@Override
    	protected void configure(HttpSecurity http) throws Exception {
    		http
+		    .csrf().disable()
    			.authorizeRequests()
    				.antMatchers("/", "/index", "/error").permitAll()
    				.antMatchers("/login/**", "/js/**").permitAll()
+				// .antMatchers("/clientes", "/locadoras", "/locacoes").permitAll()
+                .antMatchers("/css/**", "/image/**", "/webjars/**").permitAll()
+                // .antMatchers("/locadoras/cidades/{\\w+}").permitAll()
+                // .antMatchers("/locacoes/{\\d+}", "/locacoes/clientes/{\\d+}", "/locacoes/locadoras/{\\d+}").permitAll()
+                // .antMatchers("/locacoes/listar").hasAnyRole("Locadora", "Admin", "Cliente")
+				//.antMatchers("/clientes/**", "/locadoras/**", "/locacoes/**").hasRole("Admin")
 				.antMatchers("/clientes", "/locadoras", "/locacoes").permitAll()
-                .antMatchers("/css/**", "/image/**", "/webjars/**", "/locadoras/{\\d+}", "clientes/{\\d+}").permitAll()
-                .antMatchers("/locadoras/cidades/{\\w+}").permitAll()
-                .antMatchers("/locacoes/{\\d+}", "/locacoes/clientes/{\\d+}", "/locacoes/locadoras/{\\d+}").permitAll()
-                .antMatchers("/locacoes/listar").hasAnyRole("Locadora", "Admin", "Cliente")
-
+				.antMatchers("/clientes/{\\d+}", "/locadoras/{\\d+}").permitAll()
+				.antMatchers("/locacoes/{\\d+}").permitAll()
+				.antMatchers("/locadoras/cidades/{\\w+}").permitAll()
+				.antMatchers("/locacoes/clientes/{\\d+}").permitAll()
+				.antMatchers("/locacoes/locadoras/{\\d+}").permitAll()
 
                 .anyRequest().authenticated()
    				.and()

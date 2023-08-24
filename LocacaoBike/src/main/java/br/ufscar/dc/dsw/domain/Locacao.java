@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
+
 import br.ufscar.dc.dsw.validation.UniqueDataHora;
 import br.ufscar.dc.dsw.validation.UniqueLocacao;
 

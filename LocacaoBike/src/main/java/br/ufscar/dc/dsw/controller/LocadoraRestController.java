@@ -59,12 +59,12 @@ public class LocadoraRestController {
 			
 			locadora.setNome((String) json.get("nome"));
 			locadora.setEmail((String) json.get("email"));
-			locadora.setCNPJ((String) json.get("CNPJ"));
+			locadora.setCNPJ((String) json.get("cnpj"));
 			locadora.setCidade((String) json.get("cidade"));
 			locadora.setTelefone((String) json.get("telefone"));
-			locadora.setSenha((String) json.get("senha"));
-			locadora.setPapel((String) json.get("papel"));
-			locadora.setLocacoes(null);
+			locadora.setSenha(encoder.encode((String) json.get("senha")));
+			locadora.setPapel("ROLE_Locadora");
+			//locadora.setLocacoes(null);
 		}
 
 	@PostMapping(path = "/locadoras")
@@ -140,7 +140,6 @@ public class LocadoraRestController {
 
 	@DeleteMapping(path = "/locadoras/{id}")
 	public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
-
 		Locadora locadora = locadoraService.buscarPorId(id);
 		if (locadora == null) {
 			return ResponseEntity.notFound().build();
@@ -150,7 +149,7 @@ public class LocadoraRestController {
 				return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
 			} else {
 				locadoraService.excluirPorId(id);
-				return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+				return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 			}
 		}
 	}
