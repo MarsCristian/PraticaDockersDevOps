@@ -44,10 +44,12 @@ public class LocacaoService implements ILocacaoService {
 		dao.deleteById(id);
 	}
 
+	@Transactional(readOnly = true)
 	public List<Locacao> buscarTodosPorCliente(Cliente cliente) {
 		return dao.findByIdByCliente(cliente);
 	}
-
+	
+	@Transactional(readOnly = true)
 	public List<Locacao> buscarTodosPorLocadora(Locadora locadora) {
 		return dao.findByIdByLocadora(locadora);
 	}
