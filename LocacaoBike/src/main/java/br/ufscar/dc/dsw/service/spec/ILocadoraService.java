@@ -20,6 +20,5 @@ public interface ILocadoraService {
 
 	List<Locadora> buscarPorCidade(String cidade);
 
-
-	//boolean locadoraTemLocacao(Long id);
+	boolean locadoraTemLocacao(Long id);
 }

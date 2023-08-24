@@ -161,8 +161,13 @@ public class LocadoraRestController {
 		if (locadora == null) {
 			return ResponseEntity.notFound().build();
 		} else {
-			locadoraService.excluirPorId(id);
-			return ResponseEntity.noContent().build();
+
+			if(locadoraService.locadoraTemLocacao(id)) {
+				return new ResponseEntity<Boolean>(false, HttpStatus.FORBIDDEN);
+			} else {
+				locadoraService.excluirPorId(id);
+				return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+			}
 		}
 	}
 }
