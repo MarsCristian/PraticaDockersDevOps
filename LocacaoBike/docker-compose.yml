@@ -1,7 +1,23 @@
 version: '3.8'
 services:
+  db:
+    restart: on-failure
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: desweb1_3
+    # nao ha necessidade de expor a porta 3306 do host, os containeres podem acessar as portas uns dos outros
+    #ports:
+      #- "3306:3306"
+    healthcheck: #para garantir que o db vai estar completamente up antes de rodar o app
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
   app:
-    build: .
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Docker/app/Dockerfile
     ports:
       - "8080:8080"
     environment:
@@ -9,11 +25,5 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: password
     depends_on:
-      - db
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: desweb1_3
-    ports:
-      - "3306:3306"
+      db:
+        condition: service_healthy
