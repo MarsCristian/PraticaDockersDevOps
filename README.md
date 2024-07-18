@@ -7,12 +7,12 @@ Descrição da Aplicação
 É uma aplicação Web usando Java, spring, mysql, maven, etc. Se consiste em um site de locação de bicicletas. Neste trabalho realizei um fork da aplicação original ( créditos em  README.md) para aplicar conteinerização com dockers nela.
 	A minha versão com dockers terá dois contêineres: App, responsável por pegar as imagens do maven e do openjdk  e o Bd responsável pelo MySql. o Bd não teve necessidade de dockerfile, mas o App sim. Para sanar o problema dos contêineres rodarem ao mesmo tempo e o App não conseguir acessar o Bd, não bastou o “depends-on”, pois ele não garante que o Bd esteja completamente funcional quando inicia o App, então foi feito uma condition que foi o “service_healty” e também um teste simples no Bd, para aí sim rodar o App. Sobre as portas, o docker compose gerencia uma rede interna do dockers, a qual as portas dos contêineres podem acessar entre elas, não necessitando a exposição da porta 3306 do host, o que aumenta a segurança da aplicação.
 
-Arquivos Docker
+## Arquivos Docker
 
-Dockerfile do App em: LocacaoBike/Docker/app/Dockerfile
-Docker-compose em: LocacaoBike/docker-compose.yml
-Créditos da aplicação sem dockers em: README.md
-Outras alterações em:  LocacaoBike/src/main/resources/application.properties
+- Dockerfile do App em: LocacaoBike/Docker/app/Dockerfile
+- Docker-compose em: LocacaoBike/docker-compose.yml
+- Créditos da aplicação sem dockers em: README.md (logo abaixo)
+- Outras alterações em:  LocacaoBike/src/main/resources/application.properties
 
 ## Manual de Instalação
 
