@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: locacaobike
+  labels:
+    run: locacaobike
+    app: locacaobike
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: locacaobike

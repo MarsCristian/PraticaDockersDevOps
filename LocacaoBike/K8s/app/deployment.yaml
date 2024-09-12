@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locacaobike
+  labels:
+    app: locacaobike
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: locacaobike
+  template:
+    metadata:
+      labels:
+        app: locacaobike
+    spec:
+      containers:
+        - name: locacaobike
+          image: app-image
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://db:3306/desweb1_3"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "password"
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+            limits:
+              memory: "2Gi"
+              cpu: "2"
