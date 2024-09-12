@@ -16,6 +16,21 @@ Descrição da Aplicação
 
 ## Manual de Instalação
 
+```git clone https://github.com/MarsCristian/PraticaDockersDevOps```
+
+```cd ./PraticaDockersKubernetesDevOps/LocacaoBike```
+
+```minikube status```
+
+```chmod +x deploy.sh```
+```chmod +x delete.sh```
+
+```./deploy.sh```
+
+Certifique-se de estar com o Minikube instalado e configurado, para inicializar use o comando “./deploy” e para finalizar “delete.sh”
+Acesse a Aplicação em: http://locacaobike.k8s.local
+
+
 ### Certifique que você tem Dockers, Docker-compose e git instalados.
 - Clone o repositório:
 
